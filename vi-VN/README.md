@@ -41,7 +41,7 @@ I am proud to offer this resource for free, but if you wish to give some appreci
 
 ## Mục lục
 
-### Các yếu tố chính của Go
+### Cơ bản về Go
 
 1. [Cài đặt Go](install-go.md) - Cài đặt môi trường cho sản phẩm.
 2. [Hello, world](hello-world.md) - Khai báo các biến, hằng số, các câu lệnh if/else, switch, viết chương trình Go đầu tiên và viết test đầu tiên. Cú pháp sub-test và closure.
@@ -67,7 +67,7 @@ I am proud to offer this resource for free, but if you wish to give some appreci
 
 ### Xây dựng một ứng dụng
 
-Bây giờ hy vọng rằng bạn đã rõ phần _Các yếu tố chính của Go_ và bạn đã có một nền tảng về các tính năng chính của ngôn ngữ Go và cách dùng TDD.
+Bây giờ hy vọng rằng bạn đã rõ phần _Cơ bản về Go_ và bạn đã có một nền tảng về các tính năng chính của ngôn ngữ Go và cách dùng TDD.
 
 Phần này sẽ nói về việc xây dựng một ứng dụng.
 
@@ -75,29 +75,29 @@ Mỗi chương sẽ dựa trên chương trước đó, và mở rộng các tí
 
 Các khái niệm mới sẽ được giới thiệu để giúp viết code tiện hơn, nhưng hầu hết các tài liệu mới sẽ tìm hiểu về những gì có thể đạt được từ thư viện chuẩn của Go. 
 
-By the end of this, you should have a strong grasp as to how to iteratively write an application in Go, backed by tests.
+Cuối phần này, sẽ nắm chắc các viết một ứng dụng bằng Go được bảo đảm bởi test.
 
-* [HTTP server](http-server.md) - We will create an application which listens to HTTP requests and responds to them.
-* [JSON, routing and embedding](json.md) - We will make our endpoints return JSON and explore how to do routing.
-* [IO and sorting](io.md) - We will persist and read our data from disk and we'll cover sorting data.
-* [Command line & project structure](command-line.md) - Support multiple applications from one code base and read input from command line.
-* [Time](time.md) - using the `time` package to schedule activities.
-* [WebSockets](websockets.md) - learn how to write and test a server that uses WebSockets.
+* [HTTP server](http-server.md) - Chúng ta sẽ tạo một ứng dụng lắng nghe các HTTP request và respond các request đó.
+* [JSON, routing và embedding](json.md) - Chúng ta sẽ tạo các endpoint trả về định dạng JSON và khám phá cách để thực hiện routing.
+* [IO và sorting](io.md) - Chúng ta sẽ thực hiện lưu trữ và đọc dữ liệu từ ổ đĩa, và chúng ta sẽ xem xét cách sắp xếp dữ liệu.
+* [Command line & project structure](command-line.md) - Hỗ trợ nhiều ứng dụng từ một code base và đọc input từ command line.
+* [Time](time.md) - Sử dụng package `time` để lên lịch cho các hoạt động.
+* [WebSockets](websockets.md) - Tìm hiểu cách viết và test một server sử dụng Websocket.
 
-### Testing fundamentals
+### Testing cơ bản
 
-Covering other subjects around testing.
+Nói về các chủ đề khác xung quanh việc test.
 
-* [Introduction to acceptance tests](intro-to-acceptance-tests.md) - Learn how to write acceptance tests for your code, with a real-world example for gracefully shutting down a HTTP server
-* [Scaling acceptance tests](scaling-acceptance-tests.md) - Learn techniques to manage the complexity of writing acceptance tests for non-trivial systems.
+* [Giới thiệu về acceptance tests](intro-to-acceptance-tests.md) - Tìm hiểu cách viết các acceptance test cho code của bạn bằng một ví dụ thực tế về việc graceful shutdown một HTTP server.
+* [Mở rộng acceptance tests](scaling-acceptance-tests.md) - Tìm hiểu các kỹ thuật để quản lý độ phức tạp của việc viết các acceptance test cho các hệ thống không tầm thường.
 
-### Questions and answers
+### Hỏi và đáp
 
-I often run in to questions on the internets like
+Tôi thường tập trung vào các câu hỏi trên internet kiểu như
 
-> How do I test my amazing function that does x, y and z
+> Làm thế nào để tôi test hàm của tôi mà nó thực hiện x, y và z
 
-If you have such a question raise it as an issue on github and I'll try and find time to write a short chapter to tackle the issue. I feel like content like this is valuable as it is tackling people's _real_ questions around testing.
+Nếu bạn có một câu hỏi như vậy, hãy tạo một issue trên github và tôi sẽ cố gắng tìm thời gian để viết một chương nhỏ để xử lý issue đó. Tôi cảm thấy rằng nội dung như thế này là hữu ích vì nó giải quyết các câu hỏi _thật_ của con người xung quanh việc test.
 
 * [OS exec](os-exec.md) - An example of how we can reach out to the OS to execute commands to fetch data and keep our business logic testable/
 * [Error types](error-types.md) - Example of creating your own error types to improve your tests and make your code easier to work with.
