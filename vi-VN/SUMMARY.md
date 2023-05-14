@@ -1,5 +1,6 @@
 # Table of contents
 
+* [README](README.md)
 * [Learn Go with Tests](gb-readme.md)
 
 ## Go fundamentals
@@ -10,7 +11,7 @@
 * [Iteration](iteration.md)
 * [Arrays and slices](arrays-and-slices.md)
 * [Structs, methods & interfaces](structs-methods-and-interfaces.md)
-* [Pointers & errors](pointers-and-errors.md)
+* [Pointers & errors](go-fundamentals/pointers-and-errors.md)
 * [Maps](maps.md)
 * [Dependency Injection](dependency-injection.md)
 * [Mocking](mocking.md)
@@ -24,7 +25,7 @@
 * [Reading files](reading-files.md)
 * [Templating](html-templates.md)
 * [Generics](generics.md)
-* [Revisiting arrays and slices with generics](revisiting-arrays-and-slices-with-generics.md)
+* [Revisiting arrays and slices with generics](go-fundamentals/revisiting-arrays-and-slices-with-generics.md)
 
 ## Testing fundamentals
 
@@ -43,7 +44,7 @@
 
 ## Questions and answers
 
-* [OS Exec](os-exec.md)
+* [OS Exec](questions-and-answers/os-exec.md)
 * [Error types](error-types.md)
 * [Context-aware Reader](context-aware-reader.md)
 * [Revisiting HTTP Handlers](http-handlers-revisited.md)
