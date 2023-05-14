@@ -65,15 +65,15 @@ I am proud to offer this resource for free, but if you wish to give some appreci
 20. [Generics](generics.md) - Cách viết các hàm sử dụng các tham số generics và xây dựng cấu trúc dữ liệu generics cho riêng bạn
 21. [Quay lại với array và slice cùng generics](revisiting-arrays-and-slices-with-generics.md) - Generics rất hữu dụng khi làm việc với các loại collection. Học cách viết hàm `Reduce` và áp dụng một vài pattern phổ biến.
 
-### Build an application
+### Xây dựng một ứng dụng
 
-Now that you have hopefully digested the _Go Fundamentals_ section you have a solid grounding of a majority of Go's language features and how to do TDD.
+Bây giờ hy vọng rằng bạn đã rõ phần _Các yếu tố chính của Go_ và bạn đã có một nền tảng về các tính năng chính của ngôn ngữ Go và cách dùng TDD.
 
-This next section will involve building an application.
+Phần này sẽ nói về việc xây dựng một ứng dụng.
 
-Each chapter will iterate on the previous one, expanding the application's functionality as our product owner dictates.
+Mỗi chương sẽ dựa trên chương trước đó, và mở rộng các tính năng của ứng dụng mà chúng ta mong muốn.
 
-New concepts will be introduced to help facilitate writing great code but most of the new material will be learning what can be accomplished from Go's standard library.
+Các khái niệm mới sẽ được giới thiệu để giúp viết code tiện hơn, nhưng hầu hết các tài liệu mới sẽ tìm hiểu về những gì có thể đạt được từ thư viện chuẩn của Go. 
 
 By the end of this, you should have a strong grasp as to how to iteratively write an application in Go, backed by tests.
 
