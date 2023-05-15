@@ -1,19 +1,19 @@
-# Install Go, set up environment for productivity
+# Cài đặt Go, cài đặt môi trường cho ứng dụng
 
-The official installation instructions for Go are available [here](https://golang.org/doc/install).
+Tài liệu hướng dẫn cài đặt chính thức cho Go là ở [đây](https://golang.org/doc/install).
 
 ## Go Environment
 
 ### Go Modules
-Go 1.11 introduced [Modules](https://github.com/golang/go/wiki/Modules). This approach is the default build mode since Go 1.16, therefore the use of `GOPATH` is not recommended.
+Bắt đầu từ Go 1.11 đã giới thiệu [Modules](https://github.com/golang/go/wiki/Modules). Cách này được mặc định từ Go 1.16, do đó việc sử dụng `GOPATH` không được khuyến khích.
 
-Modules aim to solve problems related to dependency management, version selection and reproducible builds; they also enable users to run Go code outside of `GOPATH`.
+Modules tập trung giải quyết các vấn đề liên quan đến quản lý dependency, lựa chọn phiên bản và build lại; nó cungg4 cho phép người sử dụng chạy code Go bên ngoài `GOPATH`.
 
-Using Modules is pretty straightforward. Select any directory outside `GOPATH` as the root of your project, and create a new module with the `go mod init` command.
+Sử dụng Modules rất dễ dàng. Chọn bất kỳ thư mục nào ngoài `GOPATH` là thư mục gốc cho dự án của bạn, và tạo một module mới bằng câu lệnh `go mod init`.
 
-A `go.mod` file will be generated, containing the module path, a Go version, and its dependency requirements, which are the other modules needed for a successful build.
+Một file `go.mod` sẽ được sinh ra, nó chứa đường dẫn của module, thông tin phiên bản Go, và các yêu cầu dependency của nó, tức là các module khác mà nó cần để build.
 
-If no `<modulepath>` is specified, `go mod init` will try to guess the module path from the directory structure. It can also be overridden by supplying an argument.
+Nếu không có `<modulepath>` nào được đề cập, `go mod init` sẽ thử đoán xem đường dẫn của module từ cấu trúc thư mục. Nó cũng có thể được ghi đè lên bằng cách cung cấp một tham số.
 
 ```sh
 mkdir my-project
@@ -21,7 +21,7 @@ cd my-project
 go mod init <modulepath>
 ```
 
-A `go.mod` file could look like this:
+Một file `go.mod` có thể trông như thế này:
 
 ```
 module cmd
@@ -30,7 +30,7 @@ go 1.16
 
 ```
 
-The built-in documentation provides an overview of all available `go mod` commands.
+Tài liệu có sẵn cung cấp một cái nhìn tổng quan những gì có thể làm với câu lệnh `go mod`.
 
 ```sh
 go help mod
@@ -39,36 +39,36 @@ go help mod init
 
 ## Go Linting
 
-An improvement over the default linter can be configured using [GolangCI-Lint](https://golangci-lint.run).
+Một cải tiến so với linter mặc định đó là [GolangCI-Lint](https://golangci-lint.run).
 
-This can be installed as follows:
+Bạn có thể cài đặt nó như sau:
 
 ```sh
 brew install golangci-lint
 ```
 
-## Refactoring and your tooling
+## Refactoring và các công cụ của bạn
 
-A big emphasis of this book is the importance of refactoring.
+Một phần quan trọng lớn của cuốn sách này đó là refactoring.
 
-Your tools can help you do bigger refactoring with confidence.
+Các công cụ có thể giúp bạn refactor một cách tự tin hơn.
 
-You should be familiar enough with your editor to perform the following with a simple key combination:
+Bạn nên tìm hiểu hoặc làm quen với text editor của bạn để thực hiện các tổ hợp phím đơn giản:
 
-- **Extract/Inline variable**. Being able to take magic values and give them a name lets you simplify your code quickly.
-- **Extract method/function**. It is vital to be able to take a section of code and extract functions/methods
-- **Rename**. You should be able to confidently rename symbols across files.
-- **go fmt**. Go has an opinioned formatter called `go fmt`. Your editor should be running this on every file save.
-- **Run tests**. You should be able to do any of the above and then quickly re-run your tests to ensure your refactoring hasn't broken anything.
+- **Extract/Inline variable**. Có khả năng dùng các giá trị và tên của chúng để bạn có thể viết code nhanh hơn..
+- **Extract method/function**. Thật tiện dụng nếu có thể lấy một đoạn code và trích xuất nó thành các functions/methods
+- **Rename**. Bạn nên có khả năng tự tin thay đổi tên các thành phần trong các file.
+- **go fmt**. Go có một định dạng được gọi là `go fmt`. Code editor của bạn nên có thể chạy câu lệnh này khi lưu tất cả các file.
+- **Run tests**. Bạn nên có khả năng thực hiện các phần trên và nhanh chóng chạy lại các test để đảm bảo rằng các refactoring của bạn không phá vỡ bất cứ thứ gì.
 
-In addition, to help you work with your code you should be able to:
+Thêm vào đó, để giúp bạn code tốt hơn thì bạn nên có khả năng:
 
-- **View function signature**. You should never be unsure how to call a function in Go. Your IDE should describe a function in terms of its documentation, its parameters and what it returns.
-- **View function definition**. If it's still not clear what a function does, you should be able to jump to the source code and try and figure it out yourself.
-- **Find usages of a symbol**. Being able to see the context of a function being called can help your decision process when refactoring.
+- **Xem dấu hiệu một hàm (function)**. Bạn nên chắc chắn rằng bạn không bao giờ không biết cách gọi một hàm. IDE của bạn sẽ mô tả một hàm về chức năng, các tham số và kết quả trả về của nó.
+- **Xem định nghĩa hàm**. Nếu không rõ về một hàm sẽ làm gì, bạn nên có khả năng nhảy đến đoạn code của hàm đó và tự tìm hiểu.
+- **Tìm chỗ sử dụng một biểu tượng nào đó**. Có khả năng hiểu ngữ cảnh của một hàm được gọi có thể giúp bạn quyết định khi refactor.
 
-Mastering your tools will help you concentrate on the code and reduce context switching.
+Nắm rõ các công cụ của bạn sẽ giúp bạn tập trung vào code và giảm thiểu việc chuyển ngữ cảnh.
 
-## Wrapping up
+## Tóm tắt
 
-At this point you should have Go installed, an editor available and some basic tooling in place. Go has a very large ecosystem of third party products. We have identified a few useful components here. For a more complete list, see [https://awesome-go.com](https://awesome-go.com).
+Bây giờ bạn đã cài đặt Go, có một editor và một vài công cụ cơ bản. Go có một hệ sinh thái rất lớn với nhiều sản phẩm của bên thứ ba. Chúng ta đã nêu ra một vài cái hữu dụng ở đây. Bạn vào [https://awesome-go.com](https://awesome-go.com) để xem danh sách đầu đủ.
