@@ -56,19 +56,19 @@ Các công cụ có thể giúp bạn refactor một cách tự tin hơn.
 Bạn nên tìm hiểu hoặc làm quen với text editor của bạn để thực hiện các tổ hợp phím đơn giản:
 
 - **Extract/Inline variable**. Có khả năng dùng các giá trị và tên của chúng để bạn có thể viết code nhanh hơn..
-- **Extract method/function**. It is vital to be able to take a section of code and extract functions/methods
-- **Rename**. You should be able to confidently rename symbols across files.
-- **go fmt**. Go has an opinioned formatter called `go fmt`. Your editor should be running this on every file save.
-- **Run tests**. You should be able to do any of the above and then quickly re-run your tests to ensure your refactoring hasn't broken anything.
+- **Extract method/function**. Thật tiện dụng nếu có thể lấy một đoạn code và trích xuất nó thành các functions/methods
+- **Rename**. Bạn nên có khả năng tự tin thay đổi tên các thành phần trong các file.
+- **go fmt**. Go có một định dạng được gọi là `go fmt`. Code editor của bạn nên có thể chạy câu lệnh này khi lưu tất cả các file.
+- **Run tests**. Bạn nên có khả năng thực hiện các phần trên và nhanh chóng chạy lại các test để đảm bảo rằng các refactoring của bạn không phá vỡ bất cứ thứ gì.
 
-In addition, to help you work with your code you should be able to:
+Thêm vào đó, để giúp bạn code tốt hơn thì bạn nên có khả năng:
 
-- **View function signature**. You should never be unsure how to call a function in Go. Your IDE should describe a function in terms of its documentation, its parameters and what it returns.
-- **View function definition**. If it's still not clear what a function does, you should be able to jump to the source code and try and figure it out yourself.
-- **Find usages of a symbol**. Being able to see the context of a function being called can help your decision process when refactoring.
+- **Xem dấu hiệu một hàm (function)**. Bạn nên chắc chắn rằng bạn không bao giờ không biết cách gọi một hàm. IDE của bạn sẽ mô tả một hàm về chức năng, các tham số và kết quả trả về của nó.
+- **Xem định nghĩa hàm**. Nếu không rõ về một hàm sẽ làm gì, bạn nên có khả năng nhảy đến đoạn code của hàm đó và tự tìm hiểu.
+- **Tìm chỗ sử dụng một biểu tượng nào đó**. Có khả năng hiểu ngữ cảnh của một hàm được gọi có thể giúp bạn quyết định khi refactor.
 
-Mastering your tools will help you concentrate on the code and reduce context switching.
+Nắm rõ các công cụ của bạn sẽ giúp bạn tập trung vào code và giảm thiểu việc chuyển ngữ cảnh.
 
-## Wrapping up
+## Tóm tắt
 
-At this point you should have Go installed, an editor available and some basic tooling in place. Go has a very large ecosystem of third party products. We have identified a few useful components here. For a more complete list, see [https://awesome-go.com](https://awesome-go.com).
+Bây giờ bạn đã cài đặt Go, có một editor và một vài công cụ cơ bản. Go có một hệ sinh thái rất lớn với nhiều sản phẩm của bên thứ ba. Chúng ta đã nêu ra một vài cái hữu dụng ở đây. Bạn vào [https://awesome-go.com](https://awesome-go.com) để xem danh sách đầu đủ.
