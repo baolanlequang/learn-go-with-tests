@@ -71,4 +71,4 @@ Nắm rõ các công cụ của bạn sẽ giúp bạn tập trung vào code và
 
 ## Tóm tắt
 
-Bây giờ bạn đã cài đặt Go, có một editor và một vài công cụ cơ bản. Go có một hệ sinh thái rất lớn với nhiều sản phẩm của bên thứ ba. Chúng ta đã nêu ra một vài cái hữu dụng ở đây. Bạn vào [https://awesome-go.com](https://awesome-go.com) để xem danh sách đầu đủ.
+Bây giờ bạn đã cài đặt Go, có một editor và một vài công cụ cơ bản. Go có một hệ sinh thái rất lớn với nhiều sản phẩm của bên thứ ba. Chúng ta đã nêu ra một vài cái hữu dụng ở đây. Bạn vào [https://awesome-go.com](https://awesome-go.com) để xem danh sách đầy đủ.
