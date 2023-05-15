@@ -17,12 +17,12 @@
 
 ## Bản dịch
 
+- [Tiếng Việt](https://lan-le.gitbook.io/hoc-go-bang-cach-viet-test)
 - [Tiếng Trung](https://studygolang.gitbook.io/learn-go-with-tests)
 - [Tiếng Bồ Đào Nha](https://larien.gitbook.io/aprenda-go-com-testes/)
 - [Tiếng Nhật](https://andmorefine.gitbook.io/learn-go-with-tests/)
 - [Tiếng Hàn](https://miryang.gitbook.io/learn-go-with-tests/)
 - [Tiếng Thổ Nhĩ Kỳ](https://halilkocaoz.gitbook.io/go-programlama-dilini-ogren/)
-- [Tiếng Việt](https://halilkocaoz.gitbook.io/go-programlama-dilini-ogren/)
 
 ## Hỗ trợ tôi
 
@@ -176,4 +176,4 @@ Dựa trên kinh nghiệm học với một nhóm của tôi, và kinh nghiệm 
 
 [Giấy phép MIT](LICENSE.md)
 
-[Logo được thiết kế bởi egonelbre](https://github.com/egonelbre) Đây là một ngôn sao!
+[Logo được thiết kế bởi egonelbre](https://github.com/egonelbre) Đây là một ngôi sao!
