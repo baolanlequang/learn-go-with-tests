@@ -1,19 +1,19 @@
-# Install Go, set up environment for productivity
+# Cài đặt Go, cài đặt môi trường cho ứng dụng
 
-The official installation instructions for Go are available [here](https://golang.org/doc/install).
+Tài liệu hướng dẫn cài đặt chính thức cho Go là ở [đây](https://golang.org/doc/install).
 
 ## Go Environment
 
 ### Go Modules
-Go 1.11 introduced [Modules](https://github.com/golang/go/wiki/Modules). This approach is the default build mode since Go 1.16, therefore the use of `GOPATH` is not recommended.
+Bắt đầu từ Go 1.11 đã giới thiệu [Modules](https://github.com/golang/go/wiki/Modules). Cách này được mặc định từ Go 1.16, do đó việc sử dụng `GOPATH` không được khuyến khích.
 
-Modules aim to solve problems related to dependency management, version selection and reproducible builds; they also enable users to run Go code outside of `GOPATH`.
+Modules tập trung giải quyết các vấn đề liên quan đến quản lý dependency, lựa chọn phiên bản và build lại; nó cungg4 cho phép người sử dụng chạy code Go bên ngoài `GOPATH`.
 
-Using Modules is pretty straightforward. Select any directory outside `GOPATH` as the root of your project, and create a new module with the `go mod init` command.
+Sử dụng Modules rất dễ dàng. Chọn bất kỳ thư mục nào ngoài `GOPATH` là thư mục gốc cho dự án của bạn, và tạo một module mới bằng câu lệnh `go mod init`.
 
-A `go.mod` file will be generated, containing the module path, a Go version, and its dependency requirements, which are the other modules needed for a successful build.
+Một file `go.mod` sẽ được sinh ra, nó chứa đường dẫn của module, thông tin phiên bản Go, và các yêu cầu dependency của nó, tức là các module khác mà nó cần để build.
 
-If no `<modulepath>` is specified, `go mod init` will try to guess the module path from the directory structure. It can also be overridden by supplying an argument.
+Nếu không có `<modulepath>` nào được đề cập, `go mod init` sẽ thử đoán xem đường dẫn của module từ cấu trúc thư mục. Nó cũng có thể được ghi đè lên bằng cách cung cấp một tham số.
 
 ```sh
 mkdir my-project
@@ -21,7 +21,7 @@ cd my-project
 go mod init <modulepath>
 ```
 
-A `go.mod` file could look like this:
+Một file `go.mod` có thể trông như thế này:
 
 ```
 module cmd
@@ -30,7 +30,7 @@ go 1.16
 
 ```
 
-The built-in documentation provides an overview of all available `go mod` commands.
+Tài liệu có sẵn cung cấp một cái nhìn tổng quan những gì có thể làm với câu lệnh `go mod`.
 
 ```sh
 go help mod
@@ -39,23 +39,23 @@ go help mod init
 
 ## Go Linting
 
-An improvement over the default linter can be configured using [GolangCI-Lint](https://golangci-lint.run).
+Một cải tiến so với linter mặc định đó là [GolangCI-Lint](https://golangci-lint.run).
 
-This can be installed as follows:
+Bạn có thể cài đặt nó như sau:
 
 ```sh
 brew install golangci-lint
 ```
 
-## Refactoring and your tooling
+## Refactoring và các công cụ của bạn
 
-A big emphasis of this book is the importance of refactoring.
+Một phần quan trọng lớn của cuốn sách này đó là refactoring.
 
-Your tools can help you do bigger refactoring with confidence.
+Các công cụ có thể giúp bạn refactor một cách tự tin hơn.
 
-You should be familiar enough with your editor to perform the following with a simple key combination:
+Bạn nên tìm hiểu hoặc làm quen với text editor của bạn để thực hiện các tổ hợp phím đơn giản:
 
-- **Extract/Inline variable**. Being able to take magic values and give them a name lets you simplify your code quickly.
+- **Extract/Inline variable**. Có khả năng dùng các giá trị và tên của chúng để bạn có thể viết code nhanh hơn..
 - **Extract method/function**. It is vital to be able to take a section of code and extract functions/methods
 - **Rename**. You should be able to confidently rename symbols across files.
 - **go fmt**. Go has an opinioned formatter called `go fmt`. Your editor should be running this on every file save.
