@@ -1,10 +1,10 @@
-# Table of contents
+# Mục lục
 
-* [Learn Go with Tests](gb-readme.md)
+* [Học Go bằng cách viết test](gb-readme.md)
 
-## Go fundamentals
+## Cơ bản về Go
 
-* [Install Go](install-go.md)
+* [Cài đặt Go](install-go.md)
 * [Hello, World](hello-world.md)
 * [Integers](integers.md)
 * [Iteration](iteration.md)
@@ -26,12 +26,12 @@
 * [Generics](generics.md)
 * [Revisiting arrays and slices with generics](revisiting-arrays-and-slices-with-generics.md)
 
-## Testing fundamentals
+## Testing cơ bản
 
 * [Introduction to acceptance tests](intro-to-acceptance-tests.md)
 * [Scaling acceptance tests](scaling-acceptance-tests.md)
 
-## Build an application
+## Xây dựng một ứng dụng
 
 * [Intro](app-intro.md)
 * [HTTP server](http-server.md)
@@ -41,14 +41,14 @@
 * [Time](time.md)
 * [WebSockets](websockets.md)
 
-## Questions and answers
+## Hỏi và đáp
 
 * [OS Exec](os-exec.md)
 * [Error types](error-types.md)
 * [Context-aware Reader](context-aware-reader.md)
 * [Revisiting HTTP Handlers](http-handlers-revisited.md)
 
-## Meta
+## Các phần khác
 
 * [Why unit tests and how to make them work for you](why.md)
 * [Anti-patterns](anti-patterns.md)
