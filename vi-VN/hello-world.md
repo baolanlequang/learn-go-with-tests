@@ -1,11 +1,11 @@
 # Hello, World
 
-**[You can find all the code for this chapter here](https://github.com/quii/learn-go-with-tests/tree/main/hello-world)**
+**[Bạn có thể xem tất cả code của chương này tại đây](https://github.com/quii/learn-go-with-tests/tree/main/hello-world)**
 
-It is traditional for your first program in a new language to be [Hello, World](https://en.m.wikipedia.org/wiki/%22Hello,_World!%22_program).
+Theo truyền thống thì chương trình đầu tiên khi bạn học một ngôn ngữ lập trình mới đó là [Hello, World](https://en.m.wikipedia.org/wiki/%22Hello,_World!%22_program).
 
-- Create a folder wherever you like
-- Put a new file in it called `hello.go` and put the following code inside it
+- Tạo một folder tùy ý
+- Tạo một file có tên `hello.go` trong folder đó và thêm đoạn code sau vào file đó
 
 ```go
 package main
@@ -17,7 +17,7 @@ func main() {
 }
 ```
 
-To run it type `go run hello.go`.
+Chạy nó bằng cách gõ câu lệnh `go run hello.go`.
 
 ## How it works
 
