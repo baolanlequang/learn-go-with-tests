@@ -131,13 +131,13 @@ Nếu bạn không có câu lệnh `godoc`, thì có thể bạn đang sử dụ
 
 ### Hello, YOU
 
-Now that we have a test we can iterate on our software safely.
+Bây giờ chúng ta có một test để chúng ta có thể duyệt qua phần mềm của chúng ta một cách an toàn.
 
-In the last example we wrote the test _after_ the code had been written just so you could get an example of how to write a test and declare a function. From this point on we will be _writing tests first_.
+Trong ví dụ vừa rồi, chúng ta đã viết test _sau_ khi viết code để bạn có một ví dụ về cách viết test và khai báo một function. Từ bây giờ, chúng ta sẽ _viết test trước_.
 
-Our next requirement is to let us specify the recipient of the greeting.
+Yêu cầu tiếp theo đó là chúng ta cho phép chỉ định người sẽ được chào.
 
-Let's start by capturing these requirements in a test. This is basic test driven development and allows us to make sure our test is _actually_ testing what we want. When you retrospectively write tests there is the risk that your test may continue to pass even if the code doesn't work as intended.
+Chúng ta bắt đầu thực hiện yêu cầu này bằng một test. Đây là điều cơ bản trong test driven development, nó cho phép chúng ta đảm bảo rằng test của chúng ta _thật sự_ kiểm tra những gì chúng ta muốn. Khi bạn viết test sau, thì sẽ có nguy cơ rằng các test của bạn có thể sẽ tiếp tục pass ngay cả khi code của bạn thật sự không làm việc như mong muốn.
 
 ```go
 package main
@@ -154,7 +154,7 @@ func TestHello(t *testing.T) {
 }
 ```
 
-Now run `go test`, you should have a compilation error
+Bây giờ chạy `go test`, bạn sẽ gặp một lỗi biên dịch (compilation error)
 
 ```text
 ./hello_test.go:6:18: too many arguments in call to Hello
@@ -162,11 +162,11 @@ Now run `go test`, you should have a compilation error
     want ()
 ```
 
-When using a statically typed language like Go it is important to _listen to the compiler_. The compiler understands how your code should snap together and work so you don't have to.
+Khi sử dụng một ngôn ngữ kiểu tĩnh như Go, điều quan trọng đó là _lắng nghe trình biên dịch_. Trình biên dịch hiểu cách kết hợp và hoạt động của code của bạn.
 
-In this case the compiler is telling you what you need to do to continue. We have to change our function `Hello` to accept an argument.
+Trong trường hợp này, trình biên dịch nói với bạn điều bạn cần làm để có thể tiếp tục. Chúng ta thay đổi function `Hello` để nhận một tham số.
 
-Edit the `Hello` function to accept an argument of type string
+Thay đổi function `Hello` để nhận một tham số có kiểu string
 
 ```go
 func Hello(name string) string {
@@ -174,7 +174,7 @@ func Hello(name string) string {
 }
 ```
 
-If you try and run your tests again your `hello.go` will fail to compile because you're not passing an argument. Send in "world" to make it compile.
+Nếu bạn thử chạy test một lần nữa, `hello.go` sẽ không thể biên dịch bởi vì bạn chưa đưa vào một tham số. Thêm vào từ world" để nó có thể biên dịch.
 
 ```go
 func main() {
@@ -182,15 +182,15 @@ func main() {
 }
 ```
 
-Now when you run your tests you should see something like
+Bây giờ khi bạn chạy test thì bạn sẽ thấy như thế này
 
 ```text
 hello_test.go:10: got 'Hello, world' want 'Hello, Chris''
 ```
 
-We finally have a compiling program but it is not meeting our requirements according to the test.
+Chúng ta đã có thể biên dịch được chương trình, nhưng nó không đúng với yêu cầu như test thông báo.
 
-Let's make the test pass by using the name argument and concatenate it with `Hello,`
+Chúng ta làm cho test pass bằng cách sử dụng tham số name và nối nó với từ `Hello,`
 
 ```go
 func Hello(name string) string {
@@ -198,7 +198,7 @@ func Hello(name string) string {
 }
 ```
 
-When you run the tests they should now pass. Normally as part of the TDD cycle we should now _refactor_.
+Khi bạn chạy test thì nó sẽ pass. Thông thường, đây là phần trong TDD gọi là _refactor_.
 
 ### A note on source control
 
