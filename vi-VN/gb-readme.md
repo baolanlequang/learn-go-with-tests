@@ -5,6 +5,7 @@
 </div>
 
 [Đồ hoạ thiết kế bởi Denise](https://twitter.com/deniseyu21)
+
 [Bản dịch tiếng Việt bởi Lê Quang Bảo Lân](https://github.com/baolanlequang/learn-go-with-tests)
 
 ## Hỗ trợ tôi
