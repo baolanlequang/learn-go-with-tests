@@ -342,9 +342,9 @@ Nếu không viết test, bạn đang cam kết để kiểm tra thủ công cod
 
 Lạy trời, chúng ta có thêm các yêu cầu nữa. Bây giờ chúng ta cần một tham số thứ hai, đó là xác định ngôn ngữ của câu chào. Nếu một ngôn ngữ được đưa vào mà chúng ta không nhận ra nó, thì để mặc định nó là tiếng Anh.
 
-We should be confident that we can use TDD to flesh out this functionality easily!
+Chúng ta nên tự tin rằng chúng ta có thể sử dụng TDD để xây dựng chức năng này một cách dễ dàng!
 
-Write a test for a user passing in Spanish. Add it to the existing suite.
+Viết một test cho tiếng Tây Ban Nha (Spanish). Thêm nó vào bộ test đang có.
 
 ```go
 	t.Run("in Spanish", func(t *testing.T) {
@@ -354,7 +354,7 @@ Write a test for a user passing in Spanish. Add it to the existing suite.
 	})
 ```
 
-Remember not to cheat! _Test first_. When you try and run the test, the compiler _should_ complain because you are calling `Hello` with two arguments rather than one.
+Nên nhớ rằng không được gian lận! _Test trước_. Khi bạn thử chạy test, trình biên dịch _nên_ phàn nàn bởi vì bạn đang gọi `Hello` với 2 tham số thay vì là một.
 
 ```text
 ./hello_test.go:27:19: too many arguments in call to Hello
@@ -362,7 +362,7 @@ Remember not to cheat! _Test first_. When you try and run the test, the compiler
     want (string)
 ```
 
-Fix the compilation problems by adding another string argument to `Hello`
+Sửa vấn đề biên dịch bằng cách thêm một tham số string khác vào `Hello`
 
 ```go
 func Hello(name string, language string) string {
@@ -373,7 +373,7 @@ func Hello(name string, language string) string {
 }
 ```
 
-When you try and run the test again it will complain about not passing through enough arguments to `Hello` in your other tests and in `hello.go`
+Khi bạn thử chạy nó lần nữa, nó sẽ báo lỗi về việc bạn không đưa đủ các thông số cho `Hello` ở trong các test khác và trong `hello.go`
 
 ```text
 ./hello.go:15:19: not enough arguments in call to Hello
@@ -381,13 +381,13 @@ When you try and run the test again it will complain about not passing through e
     want (string, string)
 ```
 
-Fix them by passing through empty strings. Now all your tests should compile _and_ pass, apart from our new scenario
+Sửa chúng bằng các thêm vào một chuỗi rỗng. Bây giờ tất cả các test có thể biên dịch _và_ pass, ngoại trừ ngữ cảnh mới của chúng ta
 
 ```text
 hello_test.go:29: got 'Hello, Elodie' want 'Hola, Elodie'
 ```
 
-We can use `if` here to check the language is equal to "Spanish" and if so change the message
+Chúng ta có thể sử dụng `if` ở đây để kiểm tra ngôn ngữ có bằng với "Spanish" hay không, nếu có thì thay đổi thông báo
 
 ```go
 func Hello(name string, language string) string {
@@ -402,9 +402,9 @@ func Hello(name string, language string) string {
 }
 ```
 
-The tests should now pass.
+Các test bây giờ sẽ pass.
 
-Now it is time to _refactor_. You should see some problems in the code, "magic" strings, some of which are repeated. Try and refactor it yourself, with every change make sure you re-run the tests to make sure your refactoring isn't breaking anything.
+Bây giờ là thời gian cho _refactor_. Bạn sẽ thấy một vài vấn đề trong đoạn code, các chuỗi "ma thuật", một vài chuỗi thì lặp lại. Bạn hãy thử tự refactor, với mỗi thay đổi bạn cần chạy lại các test để đảm bảo việc refactor của bạn không làm hư điều gì.
 
 ```go
     const spanish = "Spanish"
@@ -423,13 +423,13 @@ func Hello(name string, language string) string {
 }
 ```
 
-### French
+### Tiến Pháp (French)
 
-* Write a test asserting that if you pass in `"French"` you get `"Bonjour, "`
-* See it fail, check the error message is easy to read
-* Do the smallest reasonable change in the code
+* Viết một test để kiểm tra nếu bạn đưa vào `"French"` thì sẽ có được `"Bonjour, "`
+* Khi nó fail, kiểm tra thông báo lỗi có dễ đọc hay không
+* Thay đổi nhỏ trong code nhưng hợp lý
 
-You may have written something that looks roughly like this
+Bạn có thể có được tương tự như thế này
 
 ```go
 func Hello(name string, language string) string {
@@ -449,7 +449,7 @@ func Hello(name string, language string) string {
 
 ## `switch`
 
-When you have lots of `if` statements checking a particular value it is common to use a `switch` statement instead. We can use `switch` to refactor the code to make it easier to read and more extensible if we wish to add more language support later
+Khi bạn có nhiều câu lệnh `if` để kiểm tra một giá trị cụ thể, thông thường người ta sẽ dùng câu lệnh `switch` để thay thế. Chúng ta có thể dùng `switch` để refactor code để làm cho nó dễ đọc hơn và dễ mở rộng hơn nếu chúng ta muốn hỗ trợ thêm nhiều ngôn ngữ sau này
 
 ```go
 func Hello(name string, language string) string {
@@ -470,11 +470,11 @@ func Hello(name string, language string) string {
 }
 ```
 
-Write a test to now include a greeting in the language of your choice and you should see how simple it is to extend our _amazing_ function.
+Viết một test cho một ngôn ngữ tuỳ ý mà bạn chọn, bạn sẽ thấy nó đơn giản thế nào để mở rộng function _tuyệt vời_ của chúng ta.
 
-### one...last...refactor?
+### Lần refactor .... cuối cùng?
 
-You could argue that maybe our function is getting a little big. The simplest refactor for this would be to extract out some functionality into another function.
+Bạn có thể nhận thấy rằng có thể function của chúng ta đang hơi to lên một chút. Cách refactor đơn giản nhất cho chuyện này đó là có thể trích xuất một vài tính năng thành một function.
 
 ```go
 
@@ -508,36 +508,36 @@ func greetingPrefix(language string) (prefix string) {
 }
 ```
 
-A few new concepts:
+Một vài khái niệm mới:
 
-* In our function signature we have made a _named return value_ `(prefix string)`.
-* This will create a variable called `prefix` in your function.
-  * It will be assigned the "zero" value. This depends on the type, for example `int`s are 0 and for `string`s it is `""`.
-    * You can return whatever it's set to by just calling `return` rather than `return prefix`.
-  * This will display in the Go Doc for your function so it can make the intent of your code clearer.
-* `default` in the switch case will be branched to if none of the other `case` statements match.
-* The function name starts with a lowercase letter. In Go, public functions start with a capital letter and private ones start with a lowercase. We don't want the internals of our algorithm to be exposed to the world, so we made this function private.
-* Also, we can group constants in a block instead of declaring them each on their own line. It's a good idea to use a line between sets of related constants for readability.
+* Trong khai báo function, chúng ta đã tạo một _giá trị trả về được đặt tên_ là `(prefix string)`.
+* Nó sẽ tạo ra một biến có tên `prefix` ở trong function của bạn.
+  * Nó sẽ được gán giá trị "zero". Điều này tuỳ thuộc vào kiểu dữ liệu, ví dụ như `int` thì sẽ là 0, và kiểu `string` thì sẽ là `""`.
+    * Bạn có thể trả về bất cứ thứ gì bằng cách gọi `return` thay vì gọi `return prefix`.
+  * Việc này sẽ hiển thị trong Go Doc cho các function của bạn, do đó nó làm cho code của bạn sạch sẽ hơn.
+* `default` ở trong switch sẽ là nhánh được thực hiện khi không có `case` nào đúng.
+* Tên function bắt đầu bằng một ký tự in thường. Trong Go, các public function bắt đầu bằng một ký tự in hoa và private function bắt đầu bằng một ký tự in thường. Chúng ta không muốn thuật toán bên trong của chúng ta lộ ra cho thế giới biết, nên chúng ta cho function này là private.
+* Cũng vậy, chúng ta có thể nhóm các hằng trong một cụm thay vì khai báo chúng theo từng hàng đơn lẻ. Một ý tưởng hay đó là dùng một hàng trống giữa các bộ hằng có liên quan để cho dễ đọc.
 
-## Wrapping up
+## Tóm tắt
 
-Who knew you could get so much out of `Hello, world`?
+Ai mà biết bạn có thể có được gì từ `Hello, world`?
 
-By now you should have some understanding of:
+Bây giờ, bạn có thể hiểu một vài điều về:
 
-### Some of Go's syntax around
+### Một vài khái niệm về cú pháp của Go
 
-* Writing tests
-* Declaring functions, with arguments and return types
-* `if`, `const` and `switch`
-* Declaring variables and constants
+* Viết test
+* Khai báo function với các tham số và kiểu trả về
+* `if`, `const` và `switch`
+* Khai báo các biến và các hằng
 
-### The TDD process and _why_ the steps are important
+### Quy trình TDD và _tại sao_ các bước lại quan trọng
 
-* _Write a failing test and see it fail_ so we know we have written a _relevant_ test for our requirements and seen that it produces an _easy to understand description of the failure_
-* Writing the smallest amount of code to make it pass so we know we have working software
-* _Then_ refactor, backed with the safety of our tests to ensure we have well-crafted code that is easy to work with
+* _Viết một test fail và xem nó fail_ để chúng ta có thể biết các viết một test _liên quan_ đến các yêu cầu của chúng ta và để xem nó tạo ra một _mô tả dễ hiểu về việc fail_
+* Viết một phần code nhỏ nhất có thể để làm cho nó pass, và chúng ta có một phần mềm chạy được
+* _Sau đó_ là refactor, được bảo trợ an toàn bởi các test, chúng ta bảo đảm rằng chúng ta có thể tạo tạo ra các đoạn code mà an toàn để chạy.
 
-In our case we've gone from `Hello()` to `Hello("name")`, to `Hello("name", "French")` in small, easy to understand steps.
+Trong trường hợp của chúng ta, chúng ta đi từ `Hello()` đến `Hello("name")`, rồi đến `Hello("name", "French")` bằng các bước nhỏ, dễ hiểu.
 
-This is of course trivial compared to "real world" software but the principles still stand. TDD is a skill that needs practice to develop, but by breaking problems down into smaller components that you can test, you will have a much easier time writing software.
+Tất nhiều này chẳng là gì so với phần mềm "ngoài đời thực", nhưng các nguyên tắc vẫn vậy. TDD là một kỹ năng mà cần thực tập để phát triển, nhưng bằng cách chia nhỏ vấn đề tra các phần nhỏ hơn mà bạn có thể test, bạn sẽ dễ dàng hơn trong việc viết phần mềm.
