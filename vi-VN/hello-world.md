@@ -338,9 +338,9 @@ Bằng cách đảm bảo test của bạn _nhanh_ và thiết lập các công 
 
 Nếu không viết test, bạn đang cam kết để kiểm tra thủ công code của bạn bằng cách chạy phần mềm, điều này giảm năng suất và tiêu tốn thời gian của bạn, đặc biệt là trong thời gian dài.
 
-## Keep going! More requirements
+## Tiếp tục nào! Thêm yêu cầu nữa
 
-Goodness me, we have more requirements. We now need to support a second parameter, specifying the language of the greeting. If a language is passed in that we do not recognise, just default to English.
+Lạy trời, chúng ta có thêm các yêu cầu nữa. Bây giờ chúng ta cần một tham số thứ hai, đó là xác định ngôn ngữ của câu chào. Nếu một ngôn ngữ được đưa vào mà chúng ta không nhận ra nó, thì để mặc định nó là tiếng Anh.
 
 We should be confident that we can use TDD to flesh out this functionality easily!
 
