@@ -1,11 +1,11 @@
 # Hello, World
 
-**[You can find all the code for this chapter here](https://github.com/quii/learn-go-with-tests/tree/main/hello-world)**
+**[Bạn có thể xem tất cả code của chương này tại đây](https://github.com/quii/learn-go-with-tests/tree/main/hello-world)**
 
-It is traditional for your first program in a new language to be [Hello, World](https://en.m.wikipedia.org/wiki/%22Hello,_World!%22_program).
+Theo truyền thống thì chương trình đầu tiên khi bạn học một ngôn ngữ lập trình mới đó là [Hello, World](https://en.m.wikipedia.org/wiki/%22Hello,_World!%22_program).
 
-- Create a folder wherever you like
-- Put a new file in it called `hello.go` and put the following code inside it
+- Tạo một folder tùy ý
+- Tạo một file có tên `hello.go` trong folder đó và thêm đoạn code sau vào file đó
 
 ```go
 package main
@@ -17,21 +17,21 @@ func main() {
 }
 ```
 
-To run it type `go run hello.go`.
+Chạy nó bằng cách gõ câu lệnh `go run hello.go`.
 
-## How it works
+## Cách nó hoạt động
 
-When you write a program in Go, you will have a `main` package defined with a `main` func inside it. Packages are ways of grouping up related Go code together.
+Khi bạn viết một chương trình bằng Go, bạn sẽ có một package tên là `main` bao gồm một func `main` trong đó. Các package là cách để nhóm các code Go lại với nhau.
 
-The `func` keyword is how you define a function with a name and a body.
+Từ khóa `func` là cách bạn dùng để định nghĩa một function (hàm) với tên và nội dung của nó.
 
-With `import "fmt"` we are importing a package which contains the `Println` function that we use to print.
+Với `import "fmt"`, chúng ta thêm vào một package chứa function `Println` mà chúng ta dùng để in ra dòng chữ.
 
-## How to test
+## Cách để test
 
-How do you test this? It is good to separate your "domain" code from the outside world \(side-effects\). The `fmt.Println` is a side effect \(printing to stdout\) and the string we send in is our domain.
+Làm thế nào để bạn test cái này? Lời khuyên là bạn phân chia "domain" code của bạn với thế giới bên ngoài \(side-effects\). `fmt.Println` là một side effect \(in chữ ra stdout\) và dòng chữ chúng ta gửi là "domain" của chúng ta.
 
-So let's separate these concerns so it's easier to test
+Như vậy, chúng ta sẽ phân chia những điều trên để nó dễ test hơn.
 
 ```go
 package main
