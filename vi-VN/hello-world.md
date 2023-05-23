@@ -230,11 +230,11 @@ Sau khi refactor, chạy lại test và đảm bảo rằng bạn không phá v�
 
 Thật tốt khi nghĩ về việc sử dụng các hằng để lưu giữ ý nghĩa của các giá trị, và thỉnh thoảng tăng hiệu năng.
 
-## Hello, world... again
+## Hello, world... thêm lần nữa
 
-The next requirement is when our function is called with an empty string it defaults to printing "Hello, World", rather than "Hello, ".
+Yêu cầu tiếp theo khi function của chúng ta được gọi với một chuỗi rỗng thì nó sẽ in ra "Hello, World" thay vì  "Hello, ".
 
-Start by writing a new failing test
+Bắt đầu bằng viết một test fail mới
 
 ```go
 func TestHello(t *testing.T) {
@@ -257,11 +257,11 @@ func TestHello(t *testing.T) {
 }
 ```
 
-Here we are introducing another tool in our testing arsenal, subtests. Sometimes it is useful to group tests around a "thing" and then have subtests describing different scenarios.
+Ở đây chúng ta giới thiệu một công cụ khác trong việc test đó là subtest. Thỉnh thoảng nó hữu dụng để nhóm các test quanh "một thứ", và có các subtest để mô tả các ngữ cảnh khác nhau.
 
-A benefit of this approach is you can set up shared code that can be used in the other tests.
+Lợi ích của việc này đó là bạn có thể cài đặt code để có thể sử dụng nó trong các test khác.
 
-While we have a failing test, let's fix the code, using an `if`.
+Khi chúng ta có có một test fail, chúng ta sửa code bằng cách sử dụng `if`.
 
 ```go
 const englishHelloPrefix = "Hello, "
@@ -274,13 +274,13 @@ func Hello(name string) string {
 }
 ```
 
-If we run our tests we should see it satisfies the new requirement and we haven't accidentally broken the other functionality.
+Nếu chúng ta chạy các test của chúng ta, chúng ta sẽ thấy nó đúng với yêu cầu mới và không phá vỡ các chức năng khác.
 
-It is important that your tests _are clear specifications_ of what the code needs to do. But there is repeated code when we check if the message is what we expect.
+Việc quan trọng đó là các test của bạn _phải mô tả rõ ràng_ những điều mà code bạn cần làm. Nhưng ở đây có sự lặp lại code khi chúng ta kiểm tra thông báo như chúng ta mong muốn.
 
-Refactoring is not _just_ for the production code!
+Refactoring không _chỉ_ dành cho code trong sản phẩm!
 
-Now that the tests are passing, we can and should refactor our tests.
+Bây giờ các test đang pass, chúng ta có thể refactor chúng.
 
 ```go
 func TestHello(t *testing.T) {
@@ -306,37 +306,37 @@ func assertCorrectMessage(t testing.TB, got, want string) {
 }
 ```
 
-What have we done here?
+Chúng ta vừa làm gì xong?
 
-We've refactored our assertion into a new function. This reduces duplication and improves readability of our tests. We need to pass in `t *testing.T` so that we can tell the test code to fail when we need to.
+Chúng ta vừa refactor các kiểm tra của chúng ta vào một function mới. Điều này giảm sự lặp lại và tăng sự dễ đọc cho test của chúng ta. Chúng ta cần đưa vào `t *testing.T` để chúng ta có thể nói code test của chúng ta trở thành fail khi cần.
 
-For helper functions, it's a good idea to accept a `testing.TB` which is an interface that `*testing.T` and `*testing.B` both satisfy, so you can call helper functions from a test, or a benchmark (don't worry if words like "interface" mean nothing to you right now, it will be covered later).
+Với các helper function, cách tốt nhất là dùng một `testing.TB` là một interface mà bao gồm cả `*testing.T` và `*testing.B`, như vậy bạn có thể gọi helper function từ một test hoặc một benchmark (đừng lo nếu bây giờ bạn chưa hiểu từ "interface" là gì, nó sẽ được giải thích sau).
 
-`t.Helper()` is needed to tell the test suite that this method is a helper. By doing this when it fails the line number reported will be in our _function call_ rather than inside our test helper. This will help other developers track down problems easier. If you still don't understand, comment it out, make a test fail and observe the test output. Comments in Go are a great way to add additional information to your code, or in this case, a quick way to tell the compiler to ignore a line. You can comment out the `t.Helper()` code by adding two forward slashes `//` at the beginning of the line. You should see that line turn grey or change to another color than the rest of your code to indicate it's now commented out.
+`t.Helper()` là cần thiết để cho bộ test biết rằng method này là một helper. Bằng cách này, khi test fail thì số thứ dự dòng code được báo cáo sẽ là ở trong _function được gọi_ thay vì ở trong test helper. Điều này sẽ giúp các lập trình viên khác kiểm tra vấn đề dễ dàng hơn. Nếu bạn vẫn chưa hiểu, comment nó lại, làm cho test fail và quan sát kết quả test. Comment ở trong Go là một cách tốt để thêm thông tin vào code của bạn, hoặc trong trường hợp này là một cách nhanh để nói cho trình biên dịch bỏ qua một dòng. Bạn có thể comment dòng `t.Helper()` lại bằng cách thêm hai dấu `//` vào đầu dòng code. Bạn có thể thấy dòng đó chuyển sang màu xám hoặc một màu đó khác với màu với phần code còn lại để xác định nó là comment.
 
-### Back to source control
+### Quay trở lại với source control
 
-Now we are happy with the code I would amend the previous commit so we only check in the lovely version of our code with its test.
+Bây giờ chúng ta hài lòng với code, tôi sẽ amend các commit trước, do đó chúng ta chỉ dùng phiên bản code bao gồm test của nó.
 
-### Discipline
+### Tính kỷ luật
 
-Let's go over the cycle again
+Chúng ta nói về quy trình một lần nữa
 
-* Write a test
-* Make the compiler pass
-* Run the test, see that it fails and check the error message is meaningful
-* Write enough code to make the test pass
+* Viết một test
+* Làm cho trình biên dịch biên dịch được
+* Chạy các test, kiểm tra nếu nó fail và kiểm tra thông báo lỗi có ý nghĩa gì
+* Viết code đủ để cho test pass
 * Refactor
 
-On the face of it this may seem tedious but sticking to the feedback loop is important.
+Thoạt nhìn thì nó khá tẻ nhạt, nhưng bám vững vào quy trình này là cực kỳ quan trọng.
 
-Not only does it ensure that you have _relevant tests_, it helps ensure _you design good software_ by refactoring with the safety of tests.
+Làm việc này không chỉ đảm bảo bạn có _các test liên quan_, nó còn đảm bảo _bạn thiết kế phần mềm tốt_ bằng cách refactor với sự bảo đảm của test.
 
-Seeing the test fail is an important check because it also lets you see what the error message looks like. As a developer it can be very hard to work with a codebase when failing tests do not give a clear idea as to what the problem is.
+Kiểm tra test fail rất quan trọng bởi vì nó cũng cho phép bạn thấy các thông báo lỗi như thế nào. Là một lập trình viên, rất khó để làm việc với một codebase khi các test fail mà không rõ vấn đề là gì.
 
-By ensuring your tests are _fast_ and setting up your tools so that running tests is simple you can get in to a state of flow when writing your code.
+Bằng cách đảm bảo test của bạn _nhanh_ và thiết lập các công cụ, việc chạy các test rất đơn giản và bạn có thể nhẹ nhàng trong việc viết code.
 
-By not writing tests you are committing to manually checking your code by running your software which breaks your state of flow and you won't be saving yourself any time, especially in the long run.
+Nếu không viết test, bạn đang cam kết để kiểm tra thủ công code của bạn bằng cách chạy phần mềm, điều này giảm năng suất và tiêu tốn thời gian của bạn, đặc biệt là trong thời gian dài.
 
 ## Keep going! More requirements
 
