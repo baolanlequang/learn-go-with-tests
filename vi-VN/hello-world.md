@@ -47,9 +47,9 @@ func main() {
 }
 ```
 
-We have created a new function again with `func` but this time we've added another keyword `string` in the definition. This means this function returns a `string`.
+Chúng ta đã tạo ra thêm một funcion với `func`, nhưng lần này chúng ta đã thêm một từ khóa `string` trong khai báo. Điều này nghĩa là function sẽ trả về kết quả là một `string`.
 
-Now create a new file called `hello_test.go` where we are going to write a test for our `Hello` function
+Bây giờ tạo thêm một file mới có tên là `hello_test.go`, đây là nơi chúng ta sẽ viết một test cho function `Hello`
 
 ```go
 package main
@@ -68,14 +68,14 @@ func TestHello(t *testing.T) {
 
 ## Go modules?
 
-The next step is to run the tests. Enter `go test` in your terminal. If the tests pass, then you are probably using an earlier version of Go. However, if you are using Go 1.16 or later, then the tests will likely not run at all. Instead, you will see an error message like this in the terminal:
+Bước tiếp theo là chạy các test. Nhập `go test` vào terminal của bạn. Nếu các test pass, nghĩa là bạn có thể đang dùng các phiên bản trước đây của Go. Tuy nhiên, nếu bạn đang dùng Go 1.16 hoặc mới hơn, các test của bạn có thể sẽ không chạy. Thay vào đó, bạn sẽ thấy một thông báo lỗi ở terminal như thế này:
 
 ```shell
 $ go test
 go: cannot find main module; see 'go help modules'
 ```
 
-What's the problem? In a word, [modules](https://blog.golang.org/go116-module-changes). Luckily, the problem is easy to fix. Enter `go mod init hello` in your terminal. That will create a new file with the following contents:
+Vấn đề là gì? Một từ thôi, đó là [modules](https://blog.golang.org/go116-module-changes). Thật may mắn khi vấn đề được xử lý một cách dễ dàng. Nhập `go mod init hello` vào terminal, nó sẽ tạo ra một file với nội dung tương tự như sau:
 
 ```
 module hello
@@ -83,13 +83,13 @@ module hello
 go 1.16
 ```
 
-This file tells the `go` tools essential information about your code. If you planned to distribute your application, you would include where the code was available for download as well as information about dependencies. For now, your module file is minimal, and you can leave it that way. To read more about modules, [you can check out the reference in the Golang documentation](https://golang.org/doc/modules/gomod-ref). We can get back to testing and learning Go now since the tests should run, even on Go 1.16.
+File này sẽ cho `go` biết những thông tin cần thiết về code của bạn. Nếu bạn có kế hoạch phân phối ứng dụng của bạn, bạn sẽ cần thêm nội dung về nơi mà code của bạn có thể tải về cũng như thông tin về các dependencies (các thư viện bên ngoài mà bạn dùng). Hiện tại, file module của bạn rất đơn giản, và bạn có thể để nó như vậy. Nếu bạn muốn tìm hiểu hơn về module, [bạn có thể xem trong tài liệu của Goland](https://golang.org/doc/modules/gomod-ref). Chúng ta bây giờ có thể quay trở lại với việc test và tìm hiểu Go vì các test đã có thể chạy với Go từ 1.16 trở lên.
 
-In future chapters you will need to run `go mod init SOMENAME` in each new folder before running commands like `go test` or `go build`.
+Trong các chương tiếp theo, bạn cần chạy `go mod init SOMENAME`, với `SOMENAME` là tên của module, trong mỗi folder mới trước khi chạy các câu lệnh như `go test` hay `go build`.
 
-## Back to Testing
+## Quay trở lại với Testing
 
-Run `go test` in your terminal. It should've passed! Just to check, try deliberately breaking the test by changing the `want` string.
+Chạy `go test` trong terminal của bạn. Nó sẽ pass! Để kiểm tra, bạn thay đổi test bằng cách đổi nội dung của chuỗi `want`.
 
 Notice how you have not had to pick between multiple testing frameworks and then figure out how to install. Everything you need is built in to the language and the syntax is the same as the rest of the code you will write.
 
