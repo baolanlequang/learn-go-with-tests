@@ -83,14 +83,13 @@ module hello
 go 1.16
 ```
 
-File này sẽ cho `go` biết những thông tin cần thiết về code của bạn.
-This file tells the `go` tools essential information about your code. If you planned to distribute your application, you would include where the code was available for download as well as information about dependencies. For now, your module file is minimal, and you can leave it that way. To read more about modules, [you can check out the reference in the Golang documentation](https://golang.org/doc/modules/gomod-ref). We can get back to testing and learning Go now since the tests should run, even on Go 1.16.
+File này sẽ cho `go` biết những thông tin cần thiết về code của bạn. Nếu bạn có kế hoạch phân phối ứng dụng của bạn, bạn sẽ cần thêm nội dung về nơi mà code của bạn có thể tải về cũng như thông tin về các dependencies (các thư viện bên ngoài mà bạn dùng). Hiện tại, file module của bạn rất đơn giản, và bạn có thể để nó như vậy. Nếu bạn muốn tìm hiểu hơn về module, [bạn có thể xem trong tài liệu của Goland](https://golang.org/doc/modules/gomod-ref). Chúng ta bây giờ có thể quay trở lại với việc test và tìm hiểu Go vì các test đã có thể chạy với Go từ 1.16 trở lên.
 
-In future chapters you will need to run `go mod init SOMENAME` in each new folder before running commands like `go test` or `go build`.
+Trong các chương tiếp theo, bạn cần chạy `go mod init SOMENAME`, với `SOMENAME` là tên của module, trong mỗi folder mới trước khi chạy các câu lệnh như `go test` hay `go build`.
 
-## Back to Testing
+## Quay trở lại với Testing
 
-Run `go test` in your terminal. It should've passed! Just to check, try deliberately breaking the test by changing the `want` string.
+Chạy `go test` trong terminal của bạn. Nó sẽ pass! Để kiểm tra, bạn thay đổi test bằng cách đổi nội dung của chuỗi `want`.
 
 Notice how you have not had to pick between multiple testing frameworks and then figure out how to install. Everything you need is built in to the language and the syntax is the same as the rest of the code you will write.
 
