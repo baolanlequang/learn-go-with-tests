@@ -19,11 +19,11 @@ func main() {
 
 Chạy nó bằng cách gõ câu lệnh `go run hello.go`.
 
-## How it works
+## Cách nó hoạt động
 
-When you write a program in Go, you will have a `main` package defined with a `main` func inside it. Packages are ways of grouping up related Go code together.
+Khi bạn viết một chương trình bằng Go, bạn sẽ có một package tên là `main` bao gồm một func `main` trong đó. Các package là cách để nhóm các code Go lại với nhau.
 
-The `func` keyword is how you define a function with a name and a body.
+Từ khóa `func` là cách bạn dùng để định nghĩa một function (hàm) với tên và nội dung của nó.
 
 With `import "fmt"` we are importing a package which contains the `Println` function that we use to print.
 
