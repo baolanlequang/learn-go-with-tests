@@ -26,8 +26,7 @@
 
 ## Hỗ trợ tôi
 
-Tôi hân hạnh cung cấp miễn phí nguồn tài liệu này, nhưng nếu bạn có thể cảm ơn bằng các cách sau: 
-I am proud to offer this resource for free, but if you wish to give some appreciation:
+Tôi hân hạnh cung cấp miễn phí nguồn tài liệu này, nhưng nếu bạn có thể cảm ơn bằng các cách sau:
 
 - [Theo dõi tôi trên Twitter @quii](https://twitter.com/quii)
 - <a rel="me" href="https://mastodon.cloud/@quii">Mastodon</a>
@@ -172,7 +171,7 @@ Dựa trên kinh nghiệm học với một nhóm của tôi, và kinh nghiệm 
 
 ## Nhận xét
 
-* Thêm mộtissues hay submit PRs [tại đây](https://github.com/quii/learn-go-with-tests) hoặc [tweet tôi @quii](https://twitter.com/quii)
+* Thêm một issues hay submit PRs [tại đây](https://github.com/quii/learn-go-with-tests) hoặc [tweet tôi @quii](https://twitter.com/quii)
 
 [Giấy phép MIT](LICENSE.md)
 
