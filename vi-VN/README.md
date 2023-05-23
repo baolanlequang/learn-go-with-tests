@@ -171,7 +171,7 @@ Dựa trên kinh nghiệm học với một nhóm của tôi, và kinh nghiệm 
 
 ## Nhận xét
 
-* Thêm mộtissues hay submit PRs [tại đây](https://github.com/quii/learn-go-with-tests) hoặc [tweet tôi @quii](https://twitter.com/quii)
+* Thêm một issues hay submit PRs [tại đây](https://github.com/quii/learn-go-with-tests) hoặc [tweet tôi @quii](https://twitter.com/quii)
 
 [Giấy phép MIT](LICENSE.md)
 
