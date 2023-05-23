@@ -102,42 +102,42 @@ Viết test cũng giống như viết một function, nhưng với một vài qu
 * Function test chỉ có một tham số duy nhất là `t *testing.T`
 * Để sử dụng kiểu `*testing.T`, bạn cần `import "testing"`, như chúng ta đã làm với `fmt` file khác.
 
-For now, it's enough to know that your `t` of type `*testing.T` is your "hook" into the testing framework so you can do things like `t.Fail()` when you want to fail.
+Hiện tại, chúng ta biết rằng `t` kiểu `*testing.T` là "hook" vào testing framework để bạn có thể làm những việc như `t.Fail()` khi bạn muốn nó fail.
 
-We've covered some new topics:
+Chúng ta đã đi qua một vài chủ đề mới:
 
 #### `if`
-If statements in Go are very much like other programming languages.
+Câu lệnh if trong Go tương tự như trong các ngôn ngữ lập trình khác.
 
-#### Declaring variables
+#### Khai báo các biến
 
-We're declaring some variables with the syntax `varName := value`, which lets us re-use some values in our test for readability.
+Chúng ta đã khai báo một vài biến bằng cú pháp `varName := value`, điều này giúp chúng ta tái sử dụng một vài giá trị trong test của chúng ta cho nó dễ đọc hơn.
 
 #### `t.Errorf`
 
-We are calling the `Errorf` _method_ on our `t` which will print out a message and fail the test. The `f` stands for format which allows us to build a string with values inserted into the placeholder values `%q`. When you made the test fail it should be clear how it works.
+Chúng ta gọi _method_ (_phương thức_) trong `t` để có thể in ra thông báo và làm test fail. Chữ `f` đại diện cho định dạng (format), nó cho phép chúng ta tạo một chuỗi với các giá trị được thêm vào thông qua các giá trị placeholder `%q`. Khi bạn làm cho test fail, bạn sẽ hiểu rõ hơn về nó.
 
-You can read more about the placeholder strings in the [fmt go doc](https://golang.org/pkg/fmt/#hdr-Printing). For tests `%q` is very useful as it wraps your values in double quotes.
+Bạn có thể tìm hiểu thêm về các chuỗi placeholder tại [fmt go doc](https://golang.org/pkg/fmt/#hdr-Printing). Để test thì `%q` rất hữu ích vì nó đặt các giá trị của bạn trong dấu ngoặc kép.
 
-We will later explore the difference between methods and functions.
+Chúng ta sẽ tìm hiểu sự khác biệt giữa method và function sau.
 
 ### Go doc
 
-Another quality of life feature of Go is the documentation. You can launch the docs locally by running `godoc -http :8000`. If you go to [localhost:8000/pkg](http://localhost:8000/pkg) you will see all the packages installed on your system.
+Một điều thuận tiện của Go nữa đó là tài liệu của nó. Bạn có thể chạy các tài liệu trên máy bạn bằng cách chạy `godoc -http :8000`. Nếu bạn vào địa chỉ [localhost:8000/pkg](http://localhost:8000/pkg) thì bạn sẽ thấy tất cả các package đã được cài đặt trên hệ thống của bạn.
 
-The vast majority of the standard library has excellent documentation with examples. Navigating to [http://localhost:8000/pkg/testing/](http://localhost:8000/pkg/testing/) would be worthwhile to see what's available to you.
+Hầu hết các thư viện chuẩn đã được tài liệu hóa rất tốt đi kèm với các ví dụ. Bạn đi đến [http://localhost:8000/pkg/testing/](http://localhost:8000/pkg/testing/) sẽ thấy những gì bạn có thể dùng.
 
-If you don't have `godoc` command, then maybe you are using the newer version of Go (1.14 or later) which is [no longer including `godoc`](https://golang.org/doc/go1.14#godoc). You can manually install it with `go install golang.org/x/tools/cmd/godoc@latest`.
+Nếu bạn không có câu lệnh `godoc`, thì có thể bạn đang sử dụng phiên bản mới hơn của Go (1.14 hoặc mới hơn) là phiên bản [không bao gồm `godoc`](https://golang.org/doc/go1.14#godoc). Bạn có thể cài đặt nó bằng `go install golang.org/x/tools/cmd/godoc@latest`.
 
 ### Hello, YOU
 
-Now that we have a test we can iterate on our software safely.
+Bây giờ chúng ta có một test để chúng ta có thể duyệt qua phần mềm của chúng ta một cách an toàn.
 
-In the last example we wrote the test _after_ the code had been written just so you could get an example of how to write a test and declare a function. From this point on we will be _writing tests first_.
+Trong ví dụ vừa rồi, chúng ta đã viết test _sau_ khi viết code để bạn có một ví dụ về cách viết test và khai báo một function. Từ bây giờ, chúng ta sẽ _viết test trước_.
 
-Our next requirement is to let us specify the recipient of the greeting.
+Yêu cầu tiếp theo đó là chúng ta cho phép chỉ định người sẽ được chào.
 
-Let's start by capturing these requirements in a test. This is basic test driven development and allows us to make sure our test is _actually_ testing what we want. When you retrospectively write tests there is the risk that your test may continue to pass even if the code doesn't work as intended.
+Chúng ta bắt đầu thực hiện yêu cầu này bằng một test. Đây là điều cơ bản trong test driven development, nó cho phép chúng ta đảm bảo rằng test của chúng ta _thật sự_ kiểm tra những gì chúng ta muốn. Khi bạn viết test sau, thì sẽ có nguy cơ rằng các test của bạn có thể sẽ tiếp tục pass ngay cả khi code của bạn thật sự không làm việc như mong muốn.
 
 ```go
 package main
@@ -154,7 +154,7 @@ func TestHello(t *testing.T) {
 }
 ```
 
-Now run `go test`, you should have a compilation error
+Bây giờ chạy `go test`, bạn sẽ gặp một lỗi biên dịch (compilation error)
 
 ```text
 ./hello_test.go:6:18: too many arguments in call to Hello
@@ -162,11 +162,11 @@ Now run `go test`, you should have a compilation error
     want ()
 ```
 
-When using a statically typed language like Go it is important to _listen to the compiler_. The compiler understands how your code should snap together and work so you don't have to.
+Khi sử dụng một ngôn ngữ kiểu tĩnh như Go, điều quan trọng đó là _lắng nghe trình biên dịch_. Trình biên dịch hiểu cách kết hợp và hoạt động của code của bạn.
 
-In this case the compiler is telling you what you need to do to continue. We have to change our function `Hello` to accept an argument.
+Trong trường hợp này, trình biên dịch nói với bạn điều bạn cần làm để có thể tiếp tục. Chúng ta thay đổi function `Hello` để nhận một tham số.
 
-Edit the `Hello` function to accept an argument of type string
+Thay đổi function `Hello` để nhận một tham số có kiểu string
 
 ```go
 func Hello(name string) string {
@@ -174,7 +174,7 @@ func Hello(name string) string {
 }
 ```
 
-If you try and run your tests again your `hello.go` will fail to compile because you're not passing an argument. Send in "world" to make it compile.
+Nếu bạn thử chạy test một lần nữa, `hello.go` sẽ không thể biên dịch bởi vì bạn chưa đưa vào một tham số. Thêm vào từ world" để nó có thể biên dịch.
 
 ```go
 func main() {
@@ -182,15 +182,15 @@ func main() {
 }
 ```
 
-Now when you run your tests you should see something like
+Bây giờ khi bạn chạy test thì bạn sẽ thấy như thế này
 
 ```text
 hello_test.go:10: got 'Hello, world' want 'Hello, Chris''
 ```
 
-We finally have a compiling program but it is not meeting our requirements according to the test.
+Chúng ta đã có thể biên dịch được chương trình, nhưng nó không đúng với yêu cầu như test thông báo.
 
-Let's make the test pass by using the name argument and concatenate it with `Hello,`
+Chúng ta làm cho test pass bằng cách sử dụng tham số name và nối nó với từ `Hello,`
 
 ```go
 func Hello(name string) string {
@@ -198,7 +198,7 @@ func Hello(name string) string {
 }
 ```
 
-When you run the tests they should now pass. Normally as part of the TDD cycle we should now _refactor_.
+Khi bạn chạy test thì nó sẽ pass. Thông thường, đây là phần trong TDD gọi là _refactor_.
 
 ### A note on source control
 
