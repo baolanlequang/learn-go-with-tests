@@ -83,7 +83,7 @@ module hello
 go 1.16
 ```
 
-File này sẽ cho `go` biết những thông tin cần thiết về code của bạn. Nếu bạn có kế hoạch phân phối ứng dụng của bạn, bạn sẽ cần thêm nội dung về nơi mà code của bạn có thể tải về cũng như thông tin về các dependencies (các thư viện bên ngoài mà bạn dùng). Hiện tại, file module của bạn rất đơn giản, và bạn có thể để nó như vậy. Nếu bạn muốn tìm hiểu hơn về module, [bạn có thể xem trong tài liệu của Goland](https://golang.org/doc/modules/gomod-ref). Chúng ta bây giờ có thể quay trở lại với việc test và tìm hiểu Go vì các test đã có thể chạy với Go từ 1.16 trở lên.
+File này sẽ cho `go` biết những thông tin cần thiết về code của bạn. Nếu bạn có kế hoạch phân phối ứng dụng của bạn, bạn sẽ cần thêm nội dung về nơi mà code của bạn có thể tải về cũng như thông tin về các dependencies (các thư viện bên ngoài mà bạn dùng). Hiện tại, file module của bạn rất đơn giản, và bạn có thể để nó như vậy. Nếu bạn muốn tìm hiểu hơn về module, [bạn có thể xem trong tài liệu của Golang](https://golang.org/doc/modules/gomod-ref). Chúng ta bây giờ có thể quay trở lại với việc test và tìm hiểu Go vì các test đã có thể chạy với Go từ 1.16 trở lên.
 
 Trong các chương tiếp theo, bạn cần chạy `go mod init SOMENAME`, với `SOMENAME` là tên của module, trong mỗi folder mới trước khi chạy các câu lệnh như `go test` hay `go build`.
 
@@ -91,16 +91,16 @@ Trong các chương tiếp theo, bạn cần chạy `go mod init SOMENAME`, vớ
 
 Chạy `go test` trong terminal của bạn. Nó sẽ pass! Để kiểm tra, bạn thay đổi test bằng cách đổi nội dung của chuỗi `want`.
 
-Notice how you have not had to pick between multiple testing frameworks and then figure out how to install. Everything you need is built in to the language and the syntax is the same as the rest of the code you will write.
+Chú ý rằng bạn không cần phải lựa chọn giữa nhiều framework để test khác nhau rồi phải tìm cách cài đặt chúng. Tất cả những gì bạn cần đã được tích hợp sẵn trong ngôn ngữ và cú pháp cũng giống như code mà bạn sẽ viết.
 
-### Writing tests
+### Viết test
 
-Writing a test is just like writing a function, with a few rules
+Viết test cũng giống như viết một function, nhưng với một vài quy tắc sau:
 
-* It needs to be in a file with a name like `xxx_test.go`
-* The test function must start with the word `Test`
-* The test function takes one argument only `t *testing.T`
-* In order to use the `*testing.T` type, you need to `import "testing"`, like we did with `fmt` in the other file
+* Nó cần ở trong một file có tên tương tự như `xxx_test.go`, với `xxx` là tên tùy ý bạn.
+* Function test phải bắt đầu bằng từ `Test`
+* Function test chỉ có một tham số duy nhất là `t *testing.T`
+* Để sử dụng kiểu `*testing.T`, bạn cần `import "testing"`, như chúng ta đã làm với `fmt` file khác.
 
 For now, it's enough to know that your `t` of type `*testing.T` is your "hook" into the testing framework so you can do things like `t.Fail()` when you want to fail.
 
