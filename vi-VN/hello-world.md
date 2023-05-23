@@ -198,27 +198,25 @@ func Hello(name string) string {
 }
 ```
 
-Khi bạn chạy test thì nó sẽ pass. Thông thường, đây là phần trong TDD gọi là _refactor_.
+Khi bạn chạy test thì nó sẽ pass. Thông thường, tiếp sau đây là phần trong TDD gọi là _refactor_.
 
-### A note on source control
+### Một lưu ý với source control
 
-At this point, if you are using source control \(which you should!\) I would
-`commit` the code as it is. We have working software backed by a test.
+Tại thời điểm này, nếu bạn đang dùng source control \(điều mà bạn nên làm\), tôi sẽ `commit` code như hiện có. Chúng ta đang có một phần mềm chạy được được bảo đảm bởi test.
 
-I _wouldn't_ push to master though, because I plan to refactor next. It is nice
-to commit at this point in case you somehow get into a mess with refactoring - you can always go back to the working version.
+Tôi _sẽ không_ push lên master, bởi vì tôi sẽ refactor nó. Thật tốt khi commit tại thời điểm này phòng trường hợp bạn bị hỗn loạn khi refactor - bạn có thể trở lại với phiên bản chạy được.
 
-There's not a lot to refactor here, but we can introduce another language feature, _constants_.
+Sẽ không có nhiều refactor ở đây, nhưng chúng ta có thể giới thiệu một tính năng khác của ngôn ngữ, đó là _hằng (constant)_.
 
-### Constants
+### Hằng
 
-Constants are defined like so
+Hằng được định nghĩa như sau
 
 ```go
 const englishHelloPrefix = "Hello, "
 ```
 
-We can now refactor our code
+Chúng ta có thể refactor code của chúng ta như sau
 
 ```go
 const englishHelloPrefix = "Hello, "
@@ -228,9 +226,9 @@ func Hello(name string) string {
 }
 ```
 
-After refactoring, re-run your tests to make sure you haven't broken anything.
+Sau khi refactor, chạy lại test và đảm bảo rằng bạn không phá vỡ bất cứ điều gì.
 
-It's worth thinking about creating constants to capture the meaning of values and sometimes to aid performance.
+Thật tốt khi nghĩ về việc sử dụng các hằng để lưu giữ ý nghĩa của các giá trị, và thỉnh thoảng tăng hiệu năng.
 
 ## Hello, world... again
 
