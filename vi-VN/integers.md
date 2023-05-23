@@ -1,12 +1,12 @@
 # Integers
 
-**[You can find all the code for this chapter here](https://github.com/quii/learn-go-with-tests/tree/main/integers)**
+**[Bạn có thể xem tất cả các code của chương này ở đây](https://github.com/quii/learn-go-with-tests/tree/main/integers)**
 
-Integers work as you would expect. Let's write an `Add` function to try things out. Create a test file called `adder_test.go` and write this code.
+Integers (số nguyên) hoạt động như những gì bạn mong đợi. Chúng ta sẽ viết một function `Add` để thử một vài thứ. Tạo một file test có tên `adder_test.go` và thêm đoạn code này.
 
-**Note:** Go source files can only have one `package` per directory. Make sure that your files are organised into their own packages. [Here is a good explanation on this.](https://dave.cheney.net/2014/12/01/five-suggestions-for-setting-up-a-go-project) 
+**Chú ý:** Các file mã nguồn Go có thể chỉ có một `package` trong mỗi thư mục. Hãy đảm bảo rằng các file của bạn được nhóm vào các package tương ứng. [Đây là một giải thích hay cho điều này.](https://dave.cheney.net/2014/12/01/five-suggestions-for-setting-up-a-go-project) 
 
-Your project directory might look something like this:
+Thư mục dự án của bạn có thể trông giống như thế này:
 
 ```
 learnGoWithTests
@@ -22,7 +22,7 @@ learnGoWithTests
     |- README.md
 ```
 
-## Write the test first
+## Viết test trước
 
 ```go
 package integers
@@ -39,21 +39,21 @@ func TestAdder(t *testing.T) {
 }
 ```
 
-You will notice that we're using `%d` as our format strings rather than `%q`. That's because we want it to print an integer rather than a string.
+Bạn sẽ thấy rằng chúng ta sử dụng `%d` để định dạng chuỗi thay vì `%q`. Điều này bởi vì chúng ta muốn in ra một số nguyên thay vì một chuỗi.
 
-Also note that we are no longer using the main package, instead we've defined a package named `integers`, as the name suggests this will group functions for working with integers such as `Add`.
+Cũng chú ý rằng chúng ta không dùng package main nữa, thay vào đó chúng ta định nghĩa một package có tên là `integers` để cho biết nó sẽ nhóm các function làm việc với interger như là `Add`.
 
-## Try and run the test
+## Thử chạy test
 
-Run the test `go test`
+Thử chạy test với `go test`
 
-Inspect the compilation error
+Kiểm tra lỗi biên dịch
 
 `./adder_test.go:6:9: undefined: Add`
 
-## Write the minimal amount of code for the test to run and check the failing test output
+## Viết đoạn code tối thiểu để test có thể chạy và kiểm tra thông báo fail
 
-Write enough code to satisfy the compiler _and that's all_ - remember we want to check that our tests fail for the correct reason.
+Viết một đoạn code vừa đủ để trình biên dịch hiểu _và chỉ vậy thôi_ - nên nhớ rằng chúng ta muốn kiểm tra test fail có đúng hay không.
 
 ```go
 package integers
@@ -63,9 +63,9 @@ func Add(x, y int) int {
 }
 ```
 
-When you have more than one argument of the same type \(in our case two integers\) rather than having `(x int, y int)` you can shorten it to `(x, y int)`.
+Khi bạn có nhiều hơn một tham số có cùng một kiểu dữ liệu \(ở đây là hai số nguyên\), thay vì `(x int, y int)` thì bạn có thể khai báo ngắn gọn hơn là `(x, y int)`.
 
-Now run the tests and we should be happy that the test is correctly reporting what is wrong.
+Bây giờ chạy test và chúng ta hài lòng rằng test thông báo đúng cái sai là gì.
 
 `adder_test.go:10: expected '4' but got '0'`
 
