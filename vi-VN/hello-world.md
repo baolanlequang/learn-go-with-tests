@@ -25,13 +25,13 @@ Khi bạn viết một chương trình bằng Go, bạn sẽ có một package t
 
 Từ khóa `func` là cách bạn dùng để định nghĩa một function (hàm) với tên và nội dung của nó.
 
-With `import "fmt"` we are importing a package which contains the `Println` function that we use to print.
+Với `import "fmt"`, chúng ta thêm vào một package chứa function `Println` mà chúng ta dùng để in ra dòng chữ.
 
-## How to test
+## Cách để test
 
-How do you test this? It is good to separate your "domain" code from the outside world \(side-effects\). The `fmt.Println` is a side effect \(printing to stdout\) and the string we send in is our domain.
+Làm thế nào để bạn test cái này? Lời khuyên là bạn phân chia "domain" code của bạn với thế giới bên ngoài \(side-effects\). `fmt.Println` là một side effect \(in chữ ra stdout\) và dòng chữ chúng ta gửi là "domain" của chúng ta.
 
-So let's separate these concerns so it's easier to test
+Như vậy, chúng ta sẽ phân chia những điều trên để nó dễ test hơn.
 
 ```go
 package main
