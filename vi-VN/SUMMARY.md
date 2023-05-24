@@ -53,4 +53,4 @@
 * [Why unit tests and how to make them work for you](why.md)
 * [Anti-patterns](anti-patterns.md)
 * [Contributing](contributing.md)
-* [Chapter Template](template.md)
+* [Bản mẫu cho chương](template.md)
