@@ -423,7 +423,7 @@ func Hello(name string, language string) string {
 }
 ```
 
-### Tiến Pháp (French)
+### Tiếng Pháp (French)
 
 * Viết một test để kiểm tra nếu bạn đưa vào `"French"` thì sẽ có được `"Bonjour, "`
 * Khi nó fail, kiểm tra thông báo lỗi có dễ đọc hay không
