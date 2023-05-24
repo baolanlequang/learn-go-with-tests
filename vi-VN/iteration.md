@@ -1,14 +1,14 @@
-# Iteration
+# Vòng lặp
 
-**[You can find all the code for this chapter here](https://github.com/quii/learn-go-with-tests/tree/main/for)**
+**[Bạn có thể xem tất cả các code của chương này ở đây](https://github.com/quii/learn-go-with-tests/tree/main/for)**
 
-To do stuff repeatedly in Go, you'll need `for`. In Go there are no `while`, `do`, `until` keywords, you can only use `for`. Which is a good thing!
+Để thực hiện các việc lặp đi lặp lại trong Go, bạn cần `for`. Go không có các từ khóa `while`, `do`, `until`, bạn chỉ có thể sử dụng `for`. Đây là một điều tốt!
 
-Let's write a test for a function that repeats a character 5 times.
+Hãy viết một test cho một function để lặp lại một ký tự 5 lần.
 
-There's nothing new so far, so try and write it yourself for practice.
+Không có gì mới ở đây, vậy bạn hãy thử tự viết như là một bài tập.
 
-## Write the test first
+## Viết test trước
 
 ```go
 package iteration
@@ -25,15 +25,15 @@ func TestRepeat(t *testing.T) {
 }
 ```
 
-## Try and run the test
+## Thử chạy test
 
 `./repeat_test.go:6:14: undefined: Repeat`
 
-## Write the minimal amount of code for the test to run and check the failing test output
+## Viết một ít code vừa đủ để test chạy và kiểm tra kết quả fail
 
-_Keep the discipline!_ You don't need to know anything new right now to make the test fail properly.
+_Hãy tuân thủ kỷ luật!_ Bạn không cần kiến thức gì mới ở đây để có thể viết một test fail.
 
-All you need to do right now is enough to make it compile so you can check your test is written well.
+Tất cả những gì bạn cần bây giờ đã đủ để có thể biên dịch nó và bạn có thể kiểm tra test đã viết.
 
 ```go
 package iteration
@@ -43,13 +43,13 @@ func Repeat(character string) string {
 }
 ```
 
-Isn't it nice to know you already know enough Go to write tests for some basic problems? This means you can now play with the production code as much as you like and know it's behaving as you'd hope.
+Không phải là tốt hay sao khi bạn biết Go vừa đủ để viết test cho một vài bài toán cơ bản? Điều này có nghĩa là bây giờ bạn có thể chơi đùa với code của sản phẩm bao nhiêu bạn muốn và biết về cách hoạt động của nó như bạn mong muốn.
 
 `repeat_test.go:10: expected 'aaaaa' but got ''`
 
-## Write enough code to make it pass
+## Viết đủ code để làm cho nó pass
 
-The `for` syntax is very unremarkable and follows most C-like languages.
+Cú pháp của `for` không có gì đặc biệt và giống với hầu hết ngôn ngữ giống C.
 
 ```go
 func Repeat(character string) string {
@@ -61,21 +61,21 @@ func Repeat(character string) string {
 }
 ```
 
-Unlike other languages like C, Java, or JavaScript there are no parentheses surrounding the three components of the for statement and the braces `{ }` are always required. You might wonder what is happening in the row
+Khác với các ngôn ngữ khác như C, Java, hay Javascript, ở đây không có dấu ngoặc tròn bao quanh 3 phần của câu lệnh, và bắt buộc phải luôn có cặp ngoặc nhọn `{ }`. Bạn sẽ thắc mắc là cái gì đang diễn ra ở dòng này
 
 ```go
 	var repeated string
 ```
 
-as we've been using `:=` so far to declare and initializing variables. However, `:=` is simply [short hand for both steps](https://gobyexample.com/variables). Here we are declaring a `string` variable only. Hence, the explicit version. We can also use `var` to declare functions, as we'll see later on.
+như chúng ta đã dùng `:=` để định nghĩa và khởi tạo các biến. Tuy nhiên, `:=` đơn giản là [ngắn gọn của hai bước](https://gobyexample.com/variables). Ở đây chúng ta chỉ đang định nghĩa nghĩa một biến `string`. Do đó, đây là phiên bản rõ ràng của nó. Chúng ta cũng có thể sử dụng `var` để định nghĩa các function, chúng ta sẽ tìm hiểu nó sau.
 
-Run the test and it should pass.
+Chạy test và nó sẽ pass.
 
-Additional variants of the for loop are described [here](https://gobyexample.com/for).
+Các biến thể khác của vòng lặp for được mô tả ở [đây](https://gobyexample.com/for).
 
 ## Refactor
 
-Now it's time to refactor and introduce another construct `+=` assignment operator.
+Bây giờ là thời điểm cho refactor, và giới thiệu một cấu trúc khác `+=` của toán tử gán.
 
 ```go
 const repeatCount = 5
@@ -89,11 +89,11 @@ func Repeat(character string) string {
 }
 ```
 
-`+=` called _"the Add AND assignment operator"_, adds the right operand to the left operand and assigns the result to left operand. It works with other types like integers.
+`+=` được gọi là _"toán tử Cộng VÀ gán"_, cộng vế bên phải vào vế bên trái rồi gán kết quả cho vế bên trái. Nó cũng hoạt động với các kiểu dữ liệu khác như integer.
 
 ### Benchmarking
 
-Writing [benchmarks](https://golang.org/pkg/testing/#hdr-Benchmarks) in Go is another first-class feature of the language and it is very similar to writing tests.
+Viết [benchmark](https://golang.org/pkg/testing/#hdr-Benchmarks) là một chức năng nổi bật khác trong Go và nó rất giống như viết test.
 
 ```go
 func BenchmarkRepeat(b *testing.B) {
@@ -103,15 +103,15 @@ func BenchmarkRepeat(b *testing.B) {
 }
 ```
 
-You'll see the code is very similar to a test.
+Bạn sẽ thấy rằng code khá tương đồng với test.
 
-The `testing.B` gives you access to the cryptically named `b.N`.
+`testing.B` cho phép bạn gọi một mã có sẵn `b.N`.
 
-When the benchmark code is executed, it runs `b.N` times and measures how long it takes.
+Khi code benchmark chạy, nó sẽ chạy `b.N` lần và đo thời gian nó chạy.
 
-The amount of times the code is run shouldn't matter to you, the framework will determine what is a "good" value for that to let you have some decent results.
+Số lần mà code chạy thì bạn không cần quan tâm, framwork sẽ tự xác định đâu là giá trị "tốt" và nó sẽ cho bạn biết kết quả.
 
-To run the benchmarks do `go test -bench=.` (or if you're in Windows Powershell `go test -bench="."`)
+Để chạy benchmark, gõ `go test -bench=.` (hoặc nếu bạn đang dùng Powershell của Windows thì là `go test -bench="."`)
 
 ```text
 goos: darwin
@@ -121,18 +121,18 @@ pkg: github.com/quii/learn-go-with-tests/for/v4
 PASS
 ```
 
-What `136 ns/op` means is our function takes on average 136 nanoseconds to run \(on my computer\). Which is pretty ok! To test this it ran it 10000000 times.
+`136 ns/op` nghĩa là function của chúng ta tốn trung bình khoảng 136 nanoseconds để chạy \(trên máy tính của tôi\). Khá là tốt! Để kiểm tra thì nó đã chạy 10000000 lần.
 
-_NOTE_ by default Benchmarks are run sequentially.
+_LƯU Ý_ mặc định thì các Benchmark sẽ chạy tuần tự.
 
-## Practice exercises
+## Thực hành các bài tập
 
-* Change the test so a caller can specify how many times the character is repeated and then fix the code
-* Write `ExampleRepeat` to document your function
-* Have a look through the [strings](https://golang.org/pkg/strings) package. Find functions you think could be useful and experiment with them by writing tests like we have here. Investing time learning the standard library will really pay off over time.
+* Thay đổi test để có thể thêm và số lần lặp của ký tự và sửa lại code
+* Viết `ExampleRepeat` cho tài liệu function của bạn
+* Xem qua package [strings](https://golang.org/pkg/strings). Tìm xem các function mà bạn nghĩ có thể hữu dụng và thực hành chúng bằng cách viết test như chúng ta đã biết. Dành thời gian tìm hiểu về các thư viện chuẩn.
 
-## Wrapping up
+## Tóm tắt
 
-* More TDD practice
-* Learned `for`
-* Learned how to write benchmarks
+* Thực hành nhiều hơn về TDD
+* Tìm hiểu về `for`
+* Tìm hiểu về cách viết các benchmark
