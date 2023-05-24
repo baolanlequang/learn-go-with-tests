@@ -152,17 +152,17 @@ Chú ý rằng function ví dụ sẽ không được chạy nếu bạn xóa co
 
 Bằng cách thêm đoạn code này, ví dụ sẽ xuất hiện trong tài liệu bên trong `godoc`, làm cho code của bạn sẽ dàng tiếp cận hơn.
 
-To try this out, run `godoc -http=:6060` and navigate to `http://localhost:6060/pkg/`
+Để thử nó, chạy `godoc -http=:6060` và đi đến `http://localhost:6060/pkg/`
 
-Inside here you'll see a list of all the packages and you'll be able to find your example documentation.
+Ở đó, bạn sẽ thấy một danh sách tất các các package, và bạn sẽ thấy tài liệu của ví dụ của bạn.
 
-If you publish your code with examples to a public URL, you can share the documentation of your code at [pkg.go.dev](https://pkg.go.dev/). For example, [here](https://pkg.go.dev/github.com/quii/learn-go-with-tests/integers/v2) is the finalised API for this chapter. This web interface allows you to search for documentation of standard library packages and third-party packages.
+Nếu bạn phát hành code của bạn với các ví dụ ra một public URL, bạn có thể chia sẻ tài liệu về code của bạn tại [pkg.go.dev](https://pkg.go.dev/). Ví dụ, [ở đây](https://pkg.go.dev/github.com/quii/learn-go-with-tests/integers/v2) là API cho chương này. Trang web này cho phép bạn tìm tài liệu của các thư viện chuẩn cũng như của các bên thứ ba.
 
-## Wrapping up
+## Tóm tắt
 
-What we have covered:
+Chúng ta đã đề cập:
 
-* More practice of the TDD workflow
-* Integers, addition
-* Writing better documentation so users of our code can understand its usage quickly
-* Examples of how to use our code, which are checked as part of our tests
+* Thực hành nhiều hơn về quy trình TDD
+* Cộng số các nguyên
+* Viết tài liệu cho người dùng code của chúng ta để họ hiểu và sử dụng một cách nhanh chóng
+* Các ví dụ về cách sử dụng code của chúng ta là những phần được kiểm tra như một phần trong bộ test
