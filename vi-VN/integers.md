@@ -69,11 +69,11 @@ Bây giờ chạy test và chúng ta hài lòng rằng test thông báo đúng c
 
 `adder_test.go:10: expected '4' but got '0'`
 
-If you have noticed we learnt about _named return value_ in the [last](hello-world.md#one...last...refactor?) section but aren't using the same here. It should generally be used when the meaning of the result isn't clear from context, in our case it's pretty much clear that `Add` function will add the parameters. You can refer [this](https://github.com/golang/go/wiki/CodeReviewComments#named-result-parameters) wiki for more details.
+Nếu bạn để ý thì chúng ta đã tìm hiểu về _giá trị trả về được đặt tên_ trong [phần trước](hello-world.md#lần-refactor--cuối-cùng), nhưng chúng ta không dùng ở đây. Nó thường được sử dụng khi ý nghĩa của kết quả trả về không rõ ràng trong ngữ cảnh, nhưng ở đây thì đã rõ ràng rằng function `Add` sẽ cộng hai tham số lại với nhau. Bạn có thể tham khảo [tài liệu này](https://github.com/golang/go/wiki/CodeReviewComments#named-result-parameters) để hiểu thêm chi tiết.
 
-## Write enough code to make it pass
+## Viết code vừa đủ nế nó pass
 
-In the strictest sense of TDD we should now write the _minimal amount of code to make the test pass_. A pedantic programmer may do this
+Khi tuân thủ nghiêm ngặt TDD, chúng ta bây giờ nên viết _một lượng code tối thiểu vừa đủ để test pass_. Một lập trình viên nào đó có thể làm thế này
 
 ```go
 func Add(x, y int) int {
@@ -81,13 +81,13 @@ func Add(x, y int) int {
 }
 ```
 
-Ah hah! Foiled again, TDD is a sham right?
+À ha! Nó chạy, TDD hơi kỳ cục đúng không?
 
-We could write another test, with some different numbers to force that test to fail but that feels like [a game of cat and mouse](https://en.m.wikipedia.org/wiki/Cat_and_mouse).
+Chúng ta có thể viết một test khác với các số khác để làm cho test của chúng ta fail, nhưng nó kiểu như [trò chơi mèo vờn chuột](https://en.m.wikipedia.org/wiki/Cat_and_mouse).
 
-Once we're more familiar with Go's syntax I will introduce a technique called *"Property Based Testing"*, which would stop annoying developers and help you find bugs.
+Khi chúng ta đã quen thuộc với cú pháp Go, tôi sẽ giới thiệu một kỹ thuật gọi là *"Property Based Testing"*, nó sẽ giúp các lập trình viên khỏi bực mình và giúp bạn tìm ra bug.
 
-For now, let's fix it properly
+Hiện tại, hãy sửa nó cho đúng đã
 
 ```go
 func Add(x, y int) int {
@@ -95,17 +95,17 @@ func Add(x, y int) int {
 }
 ```
 
-If you re-run the tests they should pass.
+Nếu bạn chạy lại test thì nó sẽ pass.
 
 ## Refactor
 
-There's not a lot in the _actual_ code we can really improve on here.
+Không có nhiều code _thật sự_ chúng ta cần phải cải thiện ở đây.
 
-We explored earlier how by naming the return argument it appears in the documentation but also in most developer's text editors.
+Chúng ta đã tìm hiểu cách để đặt tên tham số trả về để nó không những hiện trong tài liệu, mà còn trong hầu hết các text editor của các lập trình viên.
 
-This is great because it aids the usability of code you are writing. It is preferable that a user can understand the usage of your code by just looking at the type signature and documentation.
+Điều này là tốt bởi vì nó hỗ trợ cho việc sử dụng code khi bạn viết code. Nó cho phép người dùng có thể hiểu các dùng code của bạn chỉ bằng cách nhìn vào kiểu dữ liệu và tài liệu.
 
-You can add documentation to functions with comments, and these will appear in Go Doc just like when you look at the standard library's documentation.
+Bạn có thể thêm tài liệu cho function bằng các comment, và chúng sẽ xuất hiện trong Go Doc như khi bạn xem tài liệu của các thư viện chuẩn.
 
 ```go
 // Add takes two integers and returns the sum of them.
@@ -114,17 +114,17 @@ func Add(x, y int) int {
 }
 ```
 
-### Examples
+### Các ví dụ
 
-If you really want to go the extra mile you can make [examples](https://blog.golang.org/examples). You will find a lot of examples in the documentation of the standard library.
+Nếu bạn muốn tìm hiểu thêm, bạn có thể làm vài [ví dụ](https://blog.golang.org/examples). Bạn sẽ thấy nhiều ví dụ ở trong tài liệu của thư viện chuẩn.
 
-Often code examples that can be found outside the codebase, such as a readme file often become out of date and incorrect compared to the actual code because they don't get checked.
+Thường thì các ví dụ có thể tìm thấy ở bên ngoài codebase, ví dụ như một file readme, sẽ thường ở nên lỗi thời và không chính xác so với code thật, bởi vì họ không kiểm tra chúng.
 
-Go examples are executed just like tests so you can be confident examples reflect what the code actually does.
+Các ví dụ được chạy như các test, do đó bạn có thể tự tin rằng các ví dụ phản ánh đúng những gì code thật thực hiện.
 
-Examples are compiled \(and optionally executed\) as part of a package's test suite.
+Các ví dụ đã được biên dịch \(và tùy chọn để chạy\) như là một phần của các bộ test.
 
-As with typical tests, examples are functions that reside in a package's `_test.go` files. Add the following `ExampleAdd` function to the `adder_test.go` file.
+Như là các test thông thường, các vị dụ là các function nằm trong một package tại các file `_test.go`  Thêm function `ExampleAdd` vào file `adder_test.go`.
 
 ```go
 func ExampleAdd() {
@@ -134,11 +134,11 @@ func ExampleAdd() {
 }
 ```
 
-(If your editor doesn't automatically import packages for you, the compilation step will fail because you will be missing `import "fmt"` in `adder_test.go`. It is strongly recommended you research how to have these kind of errors fixed for you automatically in whatever editor you are using.)
+(Nếu editor của bạn không tự động import các package cho bạn, bước biên dịch sẽ fail bởi vì bạn thiếu `import "fmt"` trong `adder_test.go`. Tôi khuyên bạn nên tìm hiểu tại sao có các lỗi này và làm cho editor của bạn tự động thực hiện nó khi bạn dùng.)
 
-If your code changes so that the example is no longer valid, your build will fail.
+Nếu code của bạn thay đổi thì ví dụ đó sẽ không còn đúng, và bạn build sẽ thất bại.
 
-Running the package's test suite, we can see the example function is executed with no further arrangement from us:
+Chạy bộ test của package, bạn có thể thấy function ví dụ được chạy mà không cần sự can thiệp của chúng ta:
 
 ```bash
 $ go test -v
@@ -148,9 +148,9 @@ $ go test -v
 --- PASS: ExampleAdd (0.00s)
 ```
 
-Please note that the example function will not be executed if you remove the comment `// Output: 6`. Although the function will be compiled, it won't be executed.
+Chú ý rằng function ví dụ sẽ không được chạy nếu bạn xóa comment `// Output: 6`. Mặc dù function này sẽ được biên dịch, nhưng nó sẽ không chạy.
 
-By adding this code the example will appear in the documentation inside `godoc`, making your code even more accessible.
+Bằng cách thêm đoạn code này, ví dụ sẽ xuất hiện trong tài liệu bên trong `godoc`, làm cho code của bạn sẽ dàng tiếp cận hơn.
 
 To try this out, run `godoc -http=:6060` and navigate to `http://localhost:6060/pkg/`
 
