@@ -7,11 +7,11 @@
 * [Cài đặt Go](install-go.md)
 * [Hello, World](hello-world.md)
 * [Integers](integers.md)
-* [Iteration](iteration.md)
-* [Arrays and slices](arrays-and-slices.md)
-* [Structs, methods & interfaces](structs-methods-and-interfaces.md)
-* [Pointers & errors](go-fundamentals/pointers-and-errors.md)
-* [Maps](maps.md)
+* [Vòng lặp](iteration.md)
+* [Array và slice](arrays-and-slices.md)
+* [Struct, method & interface](structs-methods-and-interfaces.md)
+* [Pointer & error](go-fundamentals/pointers-and-errors.md)
+* [Map](maps.md)
 * [Dependency Injection](dependency-injection.md)
 * [Mocking](mocking.md)
 * [Concurrency](concurrency.md)
@@ -19,12 +19,12 @@
 * [Reflection](reflection.md)
 * [Sync](sync.md)
 * [Context](context.md)
-* [Intro to property based tests](roman-numerals.md)
+* [Giới thiệu về property based tests](roman-numerals.md)
 * [Maths](math.md)
-* [Reading files](reading-files.md)
+* [Đọc file](reading-files.md)
 * [Templating](html-templates.md)
 * [Generics](generics.md)
-* [Revisiting arrays and slices with generics](go-fundamentals/revisiting-arrays-and-slices-with-generics.md)
+* [Quay trở lại với array và slice với generics](go-fundamentals/revisiting-arrays-and-slices-with-generics.md)
 
 ## Testing cơ bản
 
@@ -35,11 +35,11 @@
 
 * [Intro](app-intro.md)
 * [HTTP server](http-server.md)
-* [JSON, routing and embedding](json.md)
-* [IO and sorting](io.md)
-* [Command line & package structure](command-line.md)
+* [JSON, routing và embedding](json.md)
+* [IO và sắp xếp](io.md)
+* [Command line & cấu trúc của package](command-line.md)
 * [Time](time.md)
-* [WebSockets](websockets.md)
+* [WebSocket](websockets.md)
 
 ## Hỏi và đáp
 
