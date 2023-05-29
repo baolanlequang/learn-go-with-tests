@@ -33,28 +33,27 @@ func TestSum(t *testing.T) {
 Các array có _kích thước cố định_, là thứ mà bạn định nghĩa khi khai báo biến.
 Chúng ta có thể khai báo một array bằng 2 cách sau:
 
-* \[N\]type{value1, value2, ..., valueN} e.g. `numbers := [5]int{1, 2, 3, 4, 5}`
-* \[...\]type{value1, value2, ..., valueN} e.g. `numbers := [...]int{1, 2, 3, 4, 5}`
+* \[N\]kiểu_dữ_liệu{giá_trị_1, giá_trị_2, ..., giá_trị_N} ví dụ: `numbers := [5]int{1, 2, 3, 4, 5}`
+* \[...\]kiểu_dữ_liệu{giá_trị_1, giá_trị_2, ..., giá_trị_N} ví dụ: `numbers := [...]int{1, 2, 3, 4, 5}`
 
-It is sometimes useful to also print the inputs to the function in the error message.
-Here, we are using the `%v` placeholder to print the "default" format, which works well for arrays.
+Nó cũng thỉnh thoảng hữu ích khi in các input (giá trị đầu vào) cho function ở trong thông báo lỗi.
+Ở đó, chúng ta sẽ dùng placeholder `%v` để in giá trị "mặc định" cho định dạng chuỗi khi làm việc với array.
 
-[Read more about the format strings](https://golang.org/pkg/fmt/)
+[Đọc thêm về định dạng chuỗi ở đây](https://golang.org/pkg/fmt/)
 
-## Try to run the test
+## Thử chạy test
 
-If you had initialized go mod with `go mod init main` you will be presented with an error
-`_testmain.go:13:2: cannot import "main"`. This is because according to common practice,
-package main will only contain integration of other packages and not unit-testable code and
-hence Go will not allow you to import a package with name `main`.
+Nếu bạn đã khởi tạo go mod bằng `go mod init main` thì bạn sẽ gặp một lỗi là `_testmain.go:13:2: cannot import "main"`.
+Lỗi này bởi vì thông thường, package main sẽ chỉ chứa các tích hợp của các package khác và không chứa code có thể dùng unit test, 
+và do đó Go sẽ không cho phép bạn import một package với tên là `main`.
 
-To fix this, you can rename the main module in `go.mod` to any other name.
+Để sửa lỗi này, bạn có thể đổi tên main module trong file `go.mod` thành một tên bất kỳ khác.
 
-Once the above error is fixed, if you run `go test` the compiler will fail with the familiar
-`./sum_test.go:10:15: undefined: Sum` error. Now we can proceed with writing the actual method
-to be tested.
 
-## Write the minimal amount of code for the test to run and check the failing test output
+Khi sửa xong lỗi trên, nếu bạn chạy `go test` thì trình biên dịch sẽ fail với một lỗi quen thuộc là `./sum_test.go:10:15: undefined: Sum`.
+Bây giờ bạn có thể viết phần code có thể dùng để test.
+
+## Viết code tối thiểu để cho test chạy và kiểm tra kết quả fail
 
 In `sum.go`
 
@@ -66,11 +65,11 @@ func Sum(numbers [5]int) int {
 }
 ```
 
-Your test should now fail with _a clear error message_
+Test của bạn bây giờ fail với _một thông báo lỗi rõ ràng_
 
 `sum_test.go:13: got 0 want 15 given, [1 2 3 4 5]`
 
-## Write enough code to make it pass
+## Viết code vừa đủ để làm cho nó pass
 
 ```go
 func Sum(numbers [5]int) int {
@@ -82,13 +81,12 @@ func Sum(numbers [5]int) int {
 }
 ```
 
-To get the value out of an array at a particular index, just use `array[index]`
-syntax. In this case, we are using `for` to iterate 5 times to work through the
-array and add each item onto `sum`.
+Để lấy một giá trị của một array tại một vị trí cụ thể, chỉ cần dùng cú pháp `array[index].
+Trong trường hợp này, chúng ta sử dụng `for` để lặp 5 lần duyệt qua array và cộng mỗi phần tử vào `sum`.
 
 ## Refactor
 
-Let's introduce [`range`](https://gobyexample.com/range) to help clean up our code
+Chúng ta giới thiệu [`range`](https://gobyexample.com/range) để làm cho code gọn gàng hơn
 
 ```go
 func Sum(numbers [5]int) int {
@@ -100,8 +98,8 @@ func Sum(numbers [5]int) int {
 }
 ```
 
-`range` lets you iterate over an array. On each iteration, `range` returns two values - the index and the value.
-We are choosing to ignore the index value by using `_` [blank identifier](https://golang.org/doc/effective_go.html#blank).
+`range` cho phép bạn lặp qua một array. Trong mỗi lần lặp, `range` trả về hai giá trị là vị trí (index) và giá trị phần tử tại vị trí đó.
+Chúng ta đang lựa chọn bỏ qua giá trị vị trí bằng cách sử dụng `_` [blank identifier](https://golang.org/doc/effective_go.html#blank).
 
 ### Arrays and their type
 
