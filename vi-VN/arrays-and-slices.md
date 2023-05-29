@@ -113,13 +113,12 @@ Go có _slice_, là thứ sẽ không gắn kích thước và bạn có thể c
 
 Yêu cầu tiếp theo đó là tính tổng của một tập hợp có kích thước bất kỳ.
 
-## Write the test first
+## Viết test trước
 
-We will now use the [slice type][slice] which allows us to have collections of
-any size. The syntax is very similar to arrays, you just omit the size when
-declaring them
+Chúng ta bây giờ sẽ dùng [kiểu slice][slice] để có thể có tập hợp với kích thước bất kỳ.
+Cú pháp rất giống với array, bạn chỉ cần bỏ qua phần kích thước khi khai báo
 
-`mySlice := []int{1,2,3}` rather than `myArray := [3]int{1,2,3}`
+`mySlice := []int{1,2,3}` thay vì `myArray := [3]int{1,2,3}`
 
 ```go
 func TestSum(t *testing.T) {
@@ -149,22 +148,21 @@ func TestSum(t *testing.T) {
 }
 ```
 
-## Try and run the test
+## Chạy thử test
 
-This does not compile
+Cái này sẽ không thể biên dịch
 
 `./sum_test.go:22:13: cannot use numbers (type []int) as type [5]int in argument to Sum`
 
-## Write the minimal amount of code for the test to run and check the failing test output
+## Viết code tối thiểu để cho test chạy và kiểm tra kết quả fail
 
-The problem here is we can either
+Vấn đề ở đây đó là chúng ta có thể hoặc là
 
-* Break the existing API by changing the argument to `Sum` to be a slice rather
-  than an array. When we do this, we will potentially ruin
-  someone's day because our _other_ test will no longer compile!
-* Create a new function
+* Phá vỡ API hiện có bằng cách thay đổi tham số trong `Sum` là một slice thay vì một array. Khi chúng ta làm việc này, 
+chúng ta sẽ huỷ hoại một ngày của một ai đó bởi vì các test _khác_ sẽ không thể biên dịch nữa!
+* Tạo thêm một function mới
 
-In our case, no one else is using our function, so rather than having two functions to maintain, let's have just one.
+Trong trường hợp của chúng ta, không ai khác đang dùng function của chúng ta, do đó thay vì có hai function để bảo trì, chúng ta nên chỉ có một.
 
 ```go
 func Sum(numbers []int) int {
@@ -176,11 +174,11 @@ func Sum(numbers []int) int {
 }
 ```
 
-If you try to run the tests they will still not compile, you will have to change the first test to pass in a slice rather than an array.
+Nếu bạn thử chạy test lại thì nó vẫn sẽ không biên dịch, bạn sẽ phải thay đổi test trước để đưa vào một slice thay vì một array.
 
-## Write enough code to make it pass
+## Viết code vừa đủ để làm cho nó pass
 
-It turns out that fixing the compiler problems were all we need to do here and the tests pass!
+Rõ ràng ở đây việc sửa các vấn đề của trình biên dịch là những gì chúng ta cần để test có thể pass!
 
 ## Refactor
 
