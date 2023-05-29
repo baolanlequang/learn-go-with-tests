@@ -86,7 +86,7 @@ Trong trường hợp này, chúng ta sử dụng `for` để lặp 5 lần duy�
 
 ## Refactor
 
-Let's introduce [`range`](https://gobyexample.com/range) to help clean up our code
+Chúng ta giới thiệu [`range`](https://gobyexample.com/range) để làm cho code gọn gàng hơn
 
 ```go
 func Sum(numbers [5]int) int {
@@ -98,8 +98,8 @@ func Sum(numbers [5]int) int {
 }
 ```
 
-`range` lets you iterate over an array. On each iteration, `range` returns two values - the index and the value.
-We are choosing to ignore the index value by using `_` [blank identifier](https://golang.org/doc/effective_go.html#blank).
+`range` cho phép bạn lặp qua một array. Trong mỗi lần lặp, `range` trả về hai giá trị là vị trí (index) và giá trị phần tử tại vị trí đó.
+Chúng ta đang lựa chọn bỏ qua giá trị vị trí bằng cách sử dụng `_` [blank identifier](https://golang.org/doc/effective_go.html#blank).
 
 ### Arrays and their type
 
