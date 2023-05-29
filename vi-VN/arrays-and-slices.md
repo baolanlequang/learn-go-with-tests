@@ -81,7 +81,7 @@ func Sum(numbers [5]int) int {
 }
 ```
 
-Để lấy một giá trị của một array tại một vị trí cụ thể, chỉ cần dùng cú pháp `array[index].
+Để lấy một giá trị của một array tại một vị trí cụ thể, chỉ cần dùng cú pháp `array[index]`.
 Trong trường hợp này, chúng ta sử dụng `for` để lặp 5 lần duyệt qua array và cộng mỗi phần tử vào `sum`.
 
 ## Refactor
@@ -101,20 +101,17 @@ func Sum(numbers [5]int) int {
 `range` cho phép bạn lặp qua một array. Trong mỗi lần lặp, `range` trả về hai giá trị là vị trí (index) và giá trị phần tử tại vị trí đó.
 Chúng ta đang lựa chọn bỏ qua giá trị vị trí bằng cách sử dụng `_` [blank identifier](https://golang.org/doc/effective_go.html#blank).
 
-### Arrays and their type
+### Array và kiểu dữ liệu của nó
 
-An interesting property of arrays is that the size is encoded in its type. If you try
-to pass an `[4]int` into a function that expects `[5]int`, it won't compile.
-They are different types so it's just the same as trying to pass a `string` into
-a function that wants an `int`.
+Một tính chất thú vị của array đó là kích thước được gắn với loại dữ liệu của nó.
+Nếu bạn thử đưa vào một giá trị `[4]int` và một function mà nó muốn là `[5]int` thì nó sẽ không biên dịch.
+Vì chúng là các kiểu dữ liệu khác nhau tương tự như đưa một `string` vào một function muốn có `int`.
 
-You may be thinking it's quite cumbersome that arrays have a fixed length, and most
-of the time you probably won't be using them!
+Bạn có thể nghĩ rằng nó khá phiền phức khi array có kích thước cố định, và hầu như bạn sẽ không sử dụng chúng!
 
-Go has _slices_ which do not encode the size of the collection and instead can
-have any size.
+Go có _slice_, là thứ sẽ không gắn kích thước và bạn có thể có bất kỳ kích thước nào.
 
-The next requirement will be to sum collections of varying sizes.
+Yêu cầu tiếp theo đó là tính tổng của một tập hợp có kích thước bất kỳ.
 
 ## Write the test first
 
