@@ -33,15 +33,15 @@ func TestSum(t *testing.T) {
 Các array có _kích thước cố định_, là thứ mà bạn định nghĩa khi khai báo biến.
 Chúng ta có thể khai báo một array bằng 2 cách sau:
 
-* \[N\]type{value1, value2, ..., valueN} e.g. `numbers := [5]int{1, 2, 3, 4, 5}`
-* \[...\]type{value1, value2, ..., valueN} e.g. `numbers := [...]int{1, 2, 3, 4, 5}`
+* \[N\]kiểu_dữ_liệu{giá_trị_1, giá_trị_2, ..., giá_trị_N} ví dụ: `numbers := [5]int{1, 2, 3, 4, 5}`
+* \[...\]kiểu_dữ_liệu{giá_trị_1, giá_trị_2, ..., giá_trị_N} ví dụ: `numbers := [...]int{1, 2, 3, 4, 5}`
 
-It is sometimes useful to also print the inputs to the function in the error message.
-Here, we are using the `%v` placeholder to print the "default" format, which works well for arrays.
+Nó cũng thỉnh thoảng hữu ích khi in các input (giá trị đầu vào) cho function ở trong thông báo lỗi.
+Ở đó, chúng ta sẽ dùng placeholder `%v` để in giá trị "mặc định" cho định dạng chuỗi khi làm việc với array.
 
-[Read more about the format strings](https://golang.org/pkg/fmt/)
+[Đọc thêm về định dạng chuỗi ở đây](https://golang.org/pkg/fmt/)
 
-## Try to run the test
+## Thử chạy test
 
 If you had initialized go mod with `go mod init main` you will be presented with an error
 `_testmain.go:13:2: cannot import "main"`. This is because according to common practice,
