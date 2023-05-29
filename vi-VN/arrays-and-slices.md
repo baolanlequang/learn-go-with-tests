@@ -182,8 +182,8 @@ Rõ ràng ở đây việc sửa các vấn đề của trình biên dịch là 
 
 ## Refactor
 
-We already refactored `Sum` - all we did was replace arrays with slices, so no extra changes are required.
-Remember that we must not neglect our test code in the refactoring stage - we can further improve our `Sum` tests.
+Chúng ta đã refactor `Sum` - tất cả những gì chúng ta đã làm là thay array bằng slice, do đó không cần thay đổi gì thêm.
+Nên nhớ rằng chúng ta phải không quên phần code test ở trong bước refactor - chúng ta có thể cải thiện test của `Sum`.
 
 ```go
 func TestSum(t *testing.T) {
@@ -213,25 +213,22 @@ func TestSum(t *testing.T) {
 }
 ```
 
-It is important to question the value of your tests. It should not be a goal to
-have as many tests as possible, but rather to have as much _confidence_ as
-possible in your code base. Having too many tests can turn in to a real problem
-and it just adds more overhead in maintenance. **Every test has a cost**.
+Điều quan trọng là đặt câu hỏi về giá trị của các test của bạn. Nó không phải là đặt mục tiêu có càng nhiều
+test càng tốt, nhưng phải là có các nhiều _sự tự tin_ trong code của bạn càng tốt. Có quá nhiều test có thể đi đến 
+một vấn đề thực tế đó là quá tải trong việc bảo trì. **Tất cả các test đều có giá của nó**.
 
-In our case, you can see that having two tests for this function is redundant.
-If it works for a slice of one size it's very likely it'll work for a slice of
-any size \(within reason\).
+Trong trường hợp của chúng ta, bạn có thể thấy rằng có hai test cho function này là dư thừa.
+Nếu nó hoạt động trên một slice có kích thước cố định thì nó cũng sẽ hoạt động \(theo suy đoán\) trên một slice có kích thước bấy kỳ.
 
-Go's built-in testing toolkit features a [coverage tool](https://blog.golang.org/cover).
-Whilst striving for 100% coverage should not be your end goal, the coverage tool can help
-identify areas of your code not covered by tests. If you have been strict with TDD,
-it's quite likely you'll have close to 100% coverage anyway.
+Bộ test mặc định của Go có một công cụ là [coverage](https://blog.golang.org/cover).
+Mặc dù để có 100% coverage không phải là mục tiêu cuối cùng của bạn, công cụ coverage có thể giúp xác định vùng code mà chưa được bao phủ bởi test.
+Nếu bạn tuân thủ với TDD, nó sẽ nhanh chóng giúp bạn đến gần hơn với 100% coverage.
 
-Try running
+Thử chạy
 
 `go test -cover`
 
-You should see
+Bạn sẽ thấy
 
 ```bash
 PASS
