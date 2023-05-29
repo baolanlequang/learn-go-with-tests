@@ -43,18 +43,17 @@ Nó cũng thỉnh thoảng hữu ích khi in các input (giá trị đầu vào)
 
 ## Thử chạy test
 
-If you had initialized go mod with `go mod init main` you will be presented with an error
-`_testmain.go:13:2: cannot import "main"`. This is because according to common practice,
-package main will only contain integration of other packages and not unit-testable code and
-hence Go will not allow you to import a package with name `main`.
+Nếu bạn đã khởi tạo go mod bằng `go mod init main` thì bạn sẽ gặp một lỗi là `_testmain.go:13:2: cannot import "main"`.
+Lỗi này bởi vì thông thường, package main sẽ chỉ chứa các tích hợp của các package khác và không chứa code có thể dùng unit test, 
+và do đó Go sẽ không cho phép bạn import một package với tên là `main`.
 
-To fix this, you can rename the main module in `go.mod` to any other name.
+Để sửa lỗi này, bạn có thể đổi tên main module trong file `go.mod` thành một tên bất kỳ khác.
 
-Once the above error is fixed, if you run `go test` the compiler will fail with the familiar
-`./sum_test.go:10:15: undefined: Sum` error. Now we can proceed with writing the actual method
-to be tested.
 
-## Write the minimal amount of code for the test to run and check the failing test output
+Khi sửa xong lỗi trên, nếu bạn chạy `go test` thì trình biên dịch sẽ fail với một lỗi quen thuộc là `./sum_test.go:10:15: undefined: Sum`.
+Bây giờ bạn có thể viết phần code có thể dùng để test.
+
+## Viết code tối thiểu để cho test chạy và kiểm tra kết quả fail
 
 In `sum.go`
 
@@ -66,11 +65,11 @@ func Sum(numbers [5]int) int {
 }
 ```
 
-Your test should now fail with _a clear error message_
+Test của bạn bây giờ fail với _một thông báo lỗi rõ ràng_
 
 `sum_test.go:13: got 0 want 15 given, [1 2 3 4 5]`
 
-## Write enough code to make it pass
+## Viết code vừa đủ để làm cho nó pass
 
 ```go
 func Sum(numbers [5]int) int {
@@ -82,9 +81,8 @@ func Sum(numbers [5]int) int {
 }
 ```
 
-To get the value out of an array at a particular index, just use `array[index]`
-syntax. In this case, we are using `for` to iterate 5 times to work through the
-array and add each item onto `sum`.
+Để lấy một giá trị của một array tại một vị trí cụ thể, chỉ cần dùng cú pháp `array[index].
+Trong trường hợp này, chúng ta sử dụng `for` để lặp 5 lần duyệt qua array và cộng mỗi phần tử vào `sum`.
 
 ## Refactor
 
