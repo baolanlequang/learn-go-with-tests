@@ -1,19 +1,16 @@
-# Arrays and slices
+# Array và slice
 
-**[You can find all the code for this chapter here](https://github.com/quii/learn-go-with-tests/tree/main/arrays)**
+**[Bạn có thể xem tất cả code của chương này tại đây](https://github.com/quii/learn-go-with-tests/tree/main/arrays)**
 
-Arrays allow you to store multiple elements of the same type in a variable in
-a particular order.
+Array (mảng) cho phép bạn lưu trữ nhiều thành phần có cùng một kiểu dữ liệu trong một biến duy nhất theo thứ tự.
 
-When you have an array, it is very common to have to iterate over them. So let's
-use [our new-found knowledge of `for`](iteration.md) to make a `Sum` function. `Sum` will
-take an array of numbers and return the total.
+Khi bạn có một array, sẽ rất thường xuyên chúng ta cho vòng lặp để duyệt qua nó. Do đó, chúng ta sẽ dùng [kiến thức mới vừa rồi là `for`] (iteration.md) để tạo một function `Sum`. `Sum` sẽ lấy tất cả các số trong array và trả về giá trị tổng.
 
-Let's use our TDD skills
+Hãy sử dụng kỹ năng TDD của chúng ta
 
-## Write the test first
+## Viết test trước
 
-Create a new folder to work in. Create a new file called `sum_test.go` and insert the following:
+Tạo một thư mục mới để làm việc. Tạo một file có tên là `sum_test.go` và thêm đoạn code sau:
 
 ```go
 package main
@@ -33,8 +30,8 @@ func TestSum(t *testing.T) {
 }
 ```
 
-Arrays have a _fixed capacity_ which you define when you declare the variable.
-We can initialize an array in two ways:
+Các array có _kích thước cố định_, là thứ mà bạn định nghĩa khi khai báo biến.
+Chúng ta có thể khai báo một array bằng 2 cách sau:
 
 * \[N\]type{value1, value2, ..., valueN} e.g. `numbers := [5]int{1, 2, 3, 4, 5}`
 * \[...\]type{value1, value2, ..., valueN} e.g. `numbers := [...]int{1, 2, 3, 4, 5}`
