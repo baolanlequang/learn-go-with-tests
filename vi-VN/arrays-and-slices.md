@@ -235,23 +235,23 @@ PASS
 coverage: 100.0% of statements
 ```
 
-Now delete one of the tests and check the coverage again.
+Bây giờ xoá một test và kiểm tra coverage lần nữa.
 
-Now that we are happy we have a well-tested function you should commit your
-great work before taking on the next challenge.
+Bây giờ chúng ta hài lòng với việc có một function đã test đầy đủ, bạn nên commit
+code hiện tại trước khi tiếp tục với thử thách kế tiếp.
 
-We need a new function called `SumAll` which will take a varying number of
-slices, returning a new slice containing the totals for each slice passed in.
+Chúng ta cần một function mới là `SumAll`, nó sẽ lấy các số trong các slice, và trả về một slice chứa
+các tổng tương ứng.
 
-For example
+Ví dụ
 
-`SumAll([]int{1,2}, []int{0,9})` would return `[]int{3, 9}`
+`SumAll([]int{1,2}, []int{0,9})` sẽ trả về `[]int{3, 9}`
 
-or
+hoặc
 
-`SumAll([]int{1,1,1})` would return `[]int{3}`
+`SumAll([]int{1,1,1})` sẽ trả về `[]int{3}`
 
-## Write the test first
+## Viết test trước
 
 ```go
 func TestSumAll(t *testing.T) {
@@ -265,30 +265,28 @@ func TestSumAll(t *testing.T) {
 }
 ```
 
-## Try and run the test
+## Chạy thử test
 
 `./sum_test.go:23:9: undefined: SumAll`
 
-## Write the minimal amount of code for the test to run and check the failing test output
+## Viết code tối thiểu để cho test chạy và kiểm tra kết quả fail
 
-We need to define `SumAll` according to what our test wants.
+Chúng ta cần định nghĩa `SumAll` theo những gì test của chúng ta muốn.
 
-Go can let you write [_variadic functions_](https://gobyexample.com/variadic-functions) that can take a variable number of arguments.
-
+Go có thể cho bạn viết [_variadic functions_](https://gobyexample.com/variadic-functions), nó cho phép bạn dùng một biến bao hàm nhiều tham số.
 ```go
 func SumAll(numbersToSum ...[]int) []int {
 	return nil
 }
 ```
 
-This is valid, but our tests still won't compile!
+Cái này đúng, nhưng test sẽ không thể biên dịch!
 
 `./sum_test.go:26:9: invalid operation: got != want (slice can only be compared to nil)`
 
-Go does not let you use equality operators with slices. You _could_ write
-a function to iterate over each `got` and `want` slice and check their values
-but for convenience sake, we can use [`reflect.DeepEqual`][deepEqual] which is
-useful for seeing if _any_ two variables are the same.
+Go không cho phép bạn dùng toán tử bằng với slice. Bạn _có thể_ viết một function để lặp qua từng `got` và `want` slice và kiểm tra các
+giá trị của chúng, nhưng có một cách tiện dụng hơn, chúng ta có thể dử dụng [`reflect.DeepEqual`][deepEqual], nó dùng để kiểm tra
+nếu có _bất kỳ_ hai biến nào là tương đồng.
 
 ```go
 func TestSumAll(t *testing.T) {
@@ -302,11 +300,10 @@ func TestSumAll(t *testing.T) {
 }
 ```
 
-\(make sure you `import reflect` in the top of your file to have access to `DeepEqual`\)
+\(đảm bảo rằng bạn đã thêm `import reflect` ở trên đầu file để có thể dùng `DeepEqual`\)
 
-It's important to note that `reflect.DeepEqual` is not "type safe" - the code
-will compile even if you did something a bit silly. To see this in action,
-temporarily change the test to:
+Cần lưu ý rằng `reflect.DeepEqual` không "type safe (an toàn về kiểu dữ liệu)" - nghĩa là code vẫn sẽ được biên dịch ngay cả khi bạn
+làm cái gì đó kỳ cục. Để thấy điều này, tạm thời thay đổi test thành:
 
 ```go
 func TestSumAll(t *testing.T) {
@@ -320,19 +317,17 @@ func TestSumAll(t *testing.T) {
 }
 ```
 
-What we have done here is try to compare a `slice` with a `string`. This makes
-no sense, but the test compiles! So while using `reflect.DeepEqual` is
-a convenient way of comparing slices \(and other things\) you must be careful
-when using it.
+Chúng ta vừa thử so sánh một `slice` với một `chuỗi. Điều này là không đúng, nhưng test vẫn có thể biên dịch!
+Do đó, bạn phải thật cẩn thận khi sử dụng `reflect.DeepEqual` để tiện lợi cho việc so sánh các slice \(và cả những cái khác nữa\).
 
-Change the test back again and run it. You should have test output like the following
+Thay đổi test về lại như cũ và chạy nó. Bạn sẽ thấy kết quả của test sẽ như thế này
 
 `sum_test.go:30: got [] want [3 9]`
 
-## Write enough code to make it pass
+## Viết code vừa đủ để làm cho nó pass
 
-What we need to do is iterate over the varargs, calculate the sum using our
-existing `Sum` function, then add it to the slice we will return
+Điều chúng ta cần làm đó là đi qua các tham số, tính tổng bằng function `Sum` có sẵn, sau đó thì thêm kết quả vào slice
+mà chúng ta sẽ trả về
 
 ```go
 func SumAll(numbersToSum ...[]int) []int {
@@ -347,23 +342,19 @@ func SumAll(numbersToSum ...[]int) []int {
 }
 ```
 
-Lots of new things to learn!
+Nhiều thứ mới phải học quá!
 
-There's a new way to create a slice. `make` allows you to create a slice with
-a starting capacity of the `len` of the `numbersToSum` we need to work through.
+Có một cách khác để tạo slice. `make` cho phép bạn tạo một slice với kích thước ban đầu là `len` của `numbersToSum` mà chúng ta cần làm việc.
 
-You can index slices like arrays with `mySlice[N]` to get the value out or
-assign it a new value with `=`
+Bạn có thể dùng index như trong array với `mySlice[N]` để lấy giá trị hoặc gán một giá trị mới tại đó bằng dấu `=`
 
-The tests should now pass.
+Test bây giờ sẽ pass.
 
 ## Refactor
 
-As mentioned, slices have a capacity. If you have a slice with a capacity of
-2 and try to do `mySlice[10] = 1` you will get a _runtime_ error.
+Như đã đề cập, slice có một kích thước. Nếu bạn có một slice với kích thước 2 và thử thực hiện `mySlice[10] = 1` thì bạn sẽ gặp một lỗi _runtime_.
 
-However, you can use the `append` function which takes a slice and a new value,
-then returns a new slice with all the items in it.
+Tuy nhiên, bạn có thể sử dụng function `append` để dùng một slice và một giá trị mới, và trả về một slice với tất cả phần tử trong đó.
 
 ```go
 func SumAll(numbersToSum ...[]int) []int {
@@ -376,14 +367,13 @@ func SumAll(numbersToSum ...[]int) []int {
 }
 ```
 
-In this implementation, we are worrying less about capacity. We start with an
-empty slice `sums` and append to it the result of `Sum` as we work through the varargs.
+Trong cách thực hiện này, chúng ta không lo nhiều về kích thước nữa. Chúng ta bắt đầu bằng một slice rỗng `sums`,
+và mở rộng nó với kết của của `Sum` tương ứng với các tham số.
 
-Our next requirement is to change `SumAll` to `SumAllTails`, where it will
-calculate the totals of the "tails" of each slice. The tail of a collection is
-all items in the collection except the first one \(the "head"\).
+Yêu cầu kết tiếp của chúng ta đó là thay đổi `SumAll` thành `SumAllTails`, đó là tính tổng của các `đuôi`
+của mỗi slice. Đuôi là tập hợp tất cả các phần tử trong tập hợp ngoại trừ phần tử đầu tiên.
 
-## Write the test first
+## Viết test trước
 
 ```go
 func TestSumAllTails(t *testing.T) {
@@ -396,17 +386,17 @@ func TestSumAllTails(t *testing.T) {
 }
 ```
 
-## Try and run the test
+## Chạy thử test
 
 `./sum_test.go:26:9: undefined: SumAllTails`
 
-## Write the minimal amount of code for the test to run and check the failing test output
+## Viết code tối thiểu để cho test chạy và kiểm tra kết quả fail
 
-Rename the function to `SumAllTails` and re-run the test
+Đổi tên function thành `SumAllTails` và chạy test lại
 
 `sum_test.go:30: got [3 9] want [2 9]`
 
-## Write enough code to make it pass
+## Viết code vừa đủ để làm cho nó pass
 
 ```go
 func SumAllTails(numbersToSum ...[]int) []int {
