@@ -20,7 +20,7 @@ import "testing"
 func TestSum(t *testing.T) {
 
 	numbers := [5]int{1, 2, 3, 4, 5}
-
+    
 	got := Sum(numbers)
 	want := 15
 
@@ -410,21 +410,19 @@ func SumAllTails(numbersToSum ...[]int) []int {
 }
 ```
 
-Slices can be sliced! The syntax is `slice[low:high]`. If you omit the value on
-one of the sides of the `:` it captures everything to that side of it. In our
-case, we are saying "take from 1 to the end" with `numbers[1:]`. You may wish to
-spend some time writing other tests around slices and experiment with the
-slice operator to get more familiar with it.
+Slice có thể được chia nhỏ ra! Cú pháp đó là `slice[bắt_đầu:kết_thúc]`. Nếu bạn bỏ giá trị một trong
+hai vế của dấu hai chấm `:`, thì nó sẽ lấy tất cả các giá trị có trong slice ở bên vế đó.
+Trong trường hợp của chúng ta, chúng ta đang muốn "lấy từ vị trí 1 đến cuối cùng" với `numbers[1:]`. Bạn có thể
+dành thời gian để viết thêm test và trải nghiệm toán tử chia nhỏ slice và hiểm thêm về nó.
 
 ## Refactor
 
-Not a lot to refactor this time.
+Không có nhiều thứ để refactor trong lần này.
 
-What do you think would happen if you passed in an empty slice into our
-function? What is the "tail" of an empty slice? What happens when you tell Go to
-capture all elements from `myEmptySlice[1:]`?
+Bạn nghĩ gì nếu bạn đưa một slice rỗng vào function của chúng ta? Lúc đó thì "tail" của một slice rỗng là gì?
+Điều gì sẽ xảy ra nếu bạn yêu cầu Go lấy tất cả các phần tử từ `myEmptySlice[1:]`?
 
-## Write the test first
+## Viết test trước
 
 ```go
 func TestSumAllTails(t *testing.T) {
@@ -450,19 +448,19 @@ func TestSumAllTails(t *testing.T) {
 }
 ```
 
-## Try and run the test
+## Chạy thử test
 
 ```text
 panic: runtime error: slice bounds out of range [recovered]
     panic: runtime error: slice bounds out of range
 ```
 
-Oh no! It's important to note that while the test _has compiled_, it _has a runtime error_.  
+Ồ không! Chúng ta cần chú ý rằng khi test _đã biên dịch_ và nó _có một lỗi runtime_.
 
-Compile time errors are our friend because they help us write software that works,  
-runtime errors are our enemies because they affect our users.
+Lỗi biên dịch là bạn của chúng ta bởi vì chúng giúp chúng ta viết phần mềm có thể chạy,
+nhưng lỗi runtime là kẻ thù của chúng ta bởi vì chúng ảnh hưởng tới người dùng của chúng ta.
 
-## Write enough code to make it pass
+## Viết code vừa đủ để làm cho nó pass
 
 ```go
 func SumAllTails(numbersToSum ...[]int) []int {
@@ -482,7 +480,7 @@ func SumAllTails(numbersToSum ...[]int) []int {
 
 ## Refactor
 
-Our tests have some repeated code around the assertions again, so let's extract those into a function.
+Test của chúng ta lại có một vài chỗ lặp lại, vì vậy chúng ta sẽ trích xuất chúng ra một function.
 
 ```go
 func TestSumAllTails(t *testing.T) {
@@ -509,51 +507,45 @@ func TestSumAllTails(t *testing.T) {
 }
 ```
 
-We could've created a new function `checkSums` like we normally do, but in this case, we're showing a new technique, assigning a function to a variable. It might look strange but, it's no different to assigning a variable to a `string`, or an `int`, functions in effect are values too. 
+Chúng ta có thể tạo một function mới `checkSums` như chúng ta thường làm, nhưng trong trường hợp này, chúng ta dùng một kỹ thuật mới đó là gán một function vào một biến. Nó trông có vẻ khá kỳ lạ, nhưng không có gì khác với gán một biến vào một `string` hay một `int`.
 
-It's not shown here, but this technique can be useful when you want to bind a function to other local variables in "scope" (e.g between some `{}`). It also allows you to reduce the surface area of your API. 
+Tuy không thể hiện ra ở đây, nhưng kỹ thuật này hữu dụng khi bạn muốn gán một function với một biến cục bộ trong một "scope" (ví dụ giữa các `{}`). Nó cũng cho phép bạn giảm diện tích thể hiện của API của bạn.
 
-By defining this function inside the test, it cannot be used by other functions in this package. Hiding variables and functions that don't need to be exported is an important design consideration.
+Bằng cách định nghĩa function này trong test, nó không thể được sử dụng bởi các function khác trong package này. Ẩn các biến và các function mà không cần thiết để xuất ra là một lưu ý quan trọng trong thiết kế.
 
-A handy side-effect of this is this adds a little type-safety to our code. If
-a developer mistakenly adds a new test with `checkSums(t, got, "dave")` the compiler
-will stop them in their tracks.
+Một tác dụng phụ hữu ích của việc này đó là thêm một type-safety vào code của chúng ta.
+Nếu một lập trình viên vô tình thêm một test với `checkSums(t, got, "dave")` thì trình biên dịch sẽ ngăn họ lại.
 
 ```bash
 $ go test
 ./sum_test.go:52:21: cannot use "dave" (type string) as type []int in argument to checkSums
 ```
 
-## Wrapping up
+## Tóm tắt
 
-We have covered
+Chúng ta đã bàn về
 
-* Arrays
-* Slices
-  * The various ways to make them
-  * How they have a _fixed_ capacity but you can create new slices from old ones
-    using `append`
-  * How to slice, slices!
-* `len` to get the length of an array or slice
-* Test coverage tool
-* `reflect.DeepEqual` and why it's useful but can reduce the type-safety of your code
+* Array
+* Slice
+  * Các cách để tạo ra chúng
+  * Cách chúng có một kích thước _cố định_, nhưng bạn có thể tạo ra một slice mới từ một slice bằng cách dùng `append`
+  * Cách để chia nhỏ slice!
+* `len` để lấy kích thước của một array hay slice
+* Công cụ test coverage
+* `reflect.DeepEqual` và tại sao nó hữu ích, nhưng có thể làm giảm type-safety trong code của bạn
 
-We've used slices and arrays with integers but they work with any other type
-too, including arrays/slices themselves. So you can declare a variable of
-`[][]string` if you need to.
+Chúng ta đã dùng slice và array với số nguyên, nhưng chúng hoạt động với các kiểu dữ liệu bất kỳ khác, ngay cả chính bản thân kiểu array/slice.
+So đó bạn có thể khai báo một biết của `[][]string` nếu cần.
 
-[Check out the Go blog post on slices][blog-slice] for an in-depth look into
-slices. Try writing more tests to solidify what you learn from reading it.
+[Xem blog của Go về slice][blog-slice] để tìm hiểu hơn về slice. Viết thêm test để thực hiện những gì bạn học được sau khi đọc nó.
 
-Another handy way to experiment with Go other than writing tests is the Go
-playground. You can try most things out and you can easily share your code if
-you need to ask questions. [I have made a go playground with a slice in it for you to experiment with.](https://play.golang.org/p/ICCWcRGIO68)
+Một cách thuận tiện khác để thực hành với Go đó là viết test với Go
+playground. Bạn có thể thử hầu hết mọi thứ và bạn có thể dễ dàng chia sẻ code của bạn nếu bạn cần hỏi gì đó.
+[Tôi đã tạo một Go playground với một slice trong đó để bạn có thể trải nghiệm.](https://play.golang.org/p/ICCWcRGIO68)
 
-[Here is an example](https://play.golang.org/p/bTrRmYfNYCp) of slicing an array
-and how changing the slice affects the original array; but a "copy" of the slice
-will not affect the original array.
-[Another example](https://play.golang.org/p/Poth8JS28sc) of why it's a good idea
-to make a copy of a slice after slicing a very large slice.
+[Đây là một ví dụ](https://play.golang.org/p/bTrRmYfNYCp) về chia nhỏ một array và array gốc thay đổi thế nào khi thay đổi slice; nhưng
+một "bản sao" của slice thì không ảnh hưởng để array gốc.
+[Một ví dụ khác](https://play.golang.org/p/Poth8JS28sc) về việc tại sao nên tạo một bản sao của slice sau khi chia nhỏ một slice rất lớn.
 
 [for]: ../iteration.md#
 [blog-slice]: https://blog.golang.org/go-slices-usage-and-internals
