@@ -216,15 +216,13 @@ Chúng ta có hai lựa chọn:
 
 ### Các method là gì?
 
-Hiện tại chúng ta chỉ biết viết các _function_
+Hiện tại chúng ta chỉ biết viết các _function_ nhưng chúng ta đã dùng một vài method. Khi chúng ta gọi `t.Errorf`, chúng ta đang gọi method `Errorf` của instance `t` (`testing.T`).
 
-So far we have only been writing _functions_ but we have been using some methods. When we call `t.Errorf` we are calling the method `Errorf` on the instance of our `t` (`testing.T`).
+Một method là một function với một receiver. Một khai báo method liên kết một định danh, là tên của nó, và liên kết nó với type cơ bản của receiver.
 
-A method is a function with a receiver. A method declaration binds an identifier, the method name, to a method, and associates the method with the receiver's base type.
+Các method rất giống với các function, nhưng chúng được gọi bằng cách gọi thông qua một instance của một type cụ thể. Trong khi đó bạn có thể gọi các function ở bất cứ đâu bạn muốn, như `Area(rectangle)` bạn chỉ có thể gọi các method thông qua "một sự vật".
 
-Methods are very similar to functions but they are called by invoking them on an instance of a particular type. Where you can just call functions wherever you like, such as `Area(rectangle)` you can only call methods on "things".
-
-An example will help so let's change our tests first to call methods instead and then fix the code.
+Một ví dụ sẽ giúp hiểu rõ hơn, chúng ta thay đổi các test trước để gọi các method và sau đó sửa code.
 
 ```go
 func TestArea(t *testing.T) {
@@ -252,7 +250,7 @@ func TestArea(t *testing.T) {
 }
 ```
 
-If we try to run the tests, we get
+Nếu chúng ta chạy test, chúng ta có được
 
 ```
 ./shapes_test.go:19:19: rectangle.Area undefined (type Rectangle has no field or method Area)
@@ -261,11 +259,11 @@ If we try to run the tests, we get
 
 > type Circle has no field or method Area
 
-I would like to reiterate how great the compiler is here. It is so important to take the time to slowly read the error messages you get, it will help you in the long run.
+Tôi muốn nhắc lại ở đây là trình biên dịch tuyệt vời như thế nào. Điều quan trọng là bạn cần dành thời gian đọc các thông báo lỗi một cách cẩn thận, nó sẽ giúp ích cho bạn sau này.
 
-## Write the minimal amount of code for the test to run and check the failing test output
+## Viết code tối thiểu để cho test chạy và kiểm tra kết quả fail
 
-Let's add some methods to our types
+Thêm vào một vài method cho các type mà chúng ta có
 
 ```go
 type Rectangle struct {
@@ -286,21 +284,21 @@ func (c Circle) Area() float64 {
 }
 ```
 
-The syntax for declaring methods is almost the same as functions and that's because they're so similar. The only difference is the syntax of the method receiver `func (receiverName ReceiverType) MethodName(args)`.
+Cú pháp để khai báo các method hầu hết là tương tự với các function bởi vì chúng rất giống nhau. Sự khác nhau duy nhất đó là cú pháp của method receiver là `func (receiverName ReceiverType) MethodName(args)`.
 
-When your method is called on a variable of that type, you get your reference to its data via the `receiverName` variable. In many other programming languages this is done implicitly and you access the receiver via `this`.
+Khi method của bạn được gọi trên một biến kiểu như vậy, bạn có được tham chiếu đến dữ liệu của nó thông qua biến `receiverName`. Trong nhiều ngôn ngữ lập trình khác, việc này là ngầm định và bạn truy cập receiver thông qua `this.`
 
-It is a convention in Go to have the receiver variable be the first letter of the type.
+Quy ước trong Go là biến receiver là ký tự đầu tiên của type.
 
 ```
 r Rectangle
 ```
 
-If you try to re-run the tests they should now compile and give you some failing output.
+Nếu bạn thử chạy test lại, chúng được biên dịch và sẽ cho ra một vài giá trị sai.
 
-## Write enough code to make it pass
+## Viết code vừa đủ để làm cho nó pass
 
-Now let's make our rectangle tests pass by fixing our new method
+Bây giờ làm cho các test của các hình chữ nhật pass bằng các method
 
 ```go
 func (r Rectangle) Area() float64 {
@@ -308,9 +306,9 @@ func (r Rectangle) Area() float64 {
 }
 ```
 
-If you re-run the tests the rectangle tests should be passing but circle should still be failing.
+Nếu bạn chạy lại test thì các test cho hình chữ nhật sẽ pass, nhưng các hình tròn thì vẫn fail.
 
-To make circle's `Area` function pass we will borrow the `Pi` constant from the `math` package (remember to import it).
+Để cho các function `Area` của các hình tròn pass, chúng ta sẽ dùng hằng số `Pi` từ package `math` (nhớ rằng phải import nó).
 
 ```go
 func (c Circle) Area() float64 {
