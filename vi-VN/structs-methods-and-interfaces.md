@@ -391,9 +391,9 @@ Cách tiếp cận bằng cách sử dụng các interface này để khai báo 
 
 ## Refactor thêm nữa
 
-Now that you have some understanding of structs we can introduce "table driven tests".
+Bây giờ bạn có vài hiểu biết về struct và chúng ta có thể nói về "table driven tests".
 
-[Table driven tests](https://github.com/golang/go/wiki/TableDrivenTests) are useful when you want to build a list of test cases that can be tested in the same manner.
+[Table driven tests](https://github.com/golang/go/wiki/TableDrivenTests) rất hữu dụng khi bạn muốn một danh sách các test case muốn test trong cùng một hoàn cảnh.
 
 ```go
 func TestArea(t *testing.T) {
@@ -416,15 +416,15 @@ func TestArea(t *testing.T) {
 }
 ```
 
-The only new syntax here is creating an "anonymous struct", `areaTests`. We are declaring a slice of structs by using `[]struct` with two fields, the `shape` and the `want`. Then we fill the slice with cases.
+Cú pháp mới duy nhất ở đây đó là tạo ra một "anonymous struct", `areaTests`. Chúng ta định nghĩa một slice của các struct bằng cách sử dụng `[]struct` với hai field, `shape` và `want`. Sau đó chúng ta đưa vào slice với các case.
 
-We then iterate over them just like we do any other slice, using the struct fields to run our tests.
+Tiếp đến chúng ta lặp qua chúng như chúng ta làm với các slice khác, sử dụng các field của struct để chạy test.
 
-You can see how it would be very easy for a developer to introduce a new shape, implement `Area` and then add it to the test cases. In addition, if a bug is found with `Area` it is very easy to add a new test case to exercise it before fixing it.
+Bạn có thể thấy rằng nó giúp lập trình viên đưa vào một hình mới rất dễ dàng, bằng cách khai triển `Area` và thêm nó vào test case. Hơn thế nữa, nếu có một bug với `Area`, rất dễ để thêm một test case trước khi sửa nó.
 
-Table driven tests can be a great item in your toolbox, but be sure that you have a need for the extra noise in the tests. They are a great fit when you wish to test various implementations of an interface, or if the data being passed in to a function has lots of different requirements that need testing.
+Table driven tests có thể là một công cụ tuyệt vời trong bộ công cụ của bạn, nhưng cần chắc chắn rằng bạn cần các kiểu test khác nữa. Chúng tuyệt vời khi bạn muốn kiểm tra nhiều khai triển của một interface, hoặc nếu dữ liệu được đưa vào một function có nhiều yêu cầu cần phải kiểm tra.
 
-Let's demonstrate all this by adding another shape and testing it; a triangle.
+Chúng ta thử nghiệm điều này bằng cách thêm một hình khác và test nó, đó là hình tam giác.
 
 ## Write the test first
 
