@@ -318,17 +318,17 @@ func (c Circle) Area() float64 {
 
 ## Refactor
 
-There is some duplication in our tests.
+Có vài trùng lặp trong test của chúng ta.
 
-All we want to do is take a collection of _shapes_, call the `Area()` method on them and then check the result.
+Chúng ta muốn là dùng một tập hợp các _hình_, gọi method `Area()` trên chúng và sau đó kiểm tra kết quả.
 
-We want to be able to write some kind of `checkArea` function that we can pass both `Rectangle`s and `Circle`s to, but fail to compile if we try to pass in something that isn't a shape.
+Chúng ta muốn có thể viết một loại function kiểu như `checkArea` mà chúng ta có thể đưa vào cả `Rectangle` và `Circle`, nhưng không thể biên dịch nếu chúng ta cố đưa vào một loại không phải kiểu hình đó.
 
-With Go, we can codify this intent with **interfaces**.
+Với Go, bạn có làm điều này với các **interface**.
 
-[Interfaces](https://golang.org/ref/spec#Interface\_types) are a very powerful concept in statically typed languages like Go because they allow you to make functions that can be used with different types and create highly-decoupled code whilst still maintaining type-safety.
+[Interface](https://golang.org/ref/spec#Interface\_types) là một khái niệm rất mạnh mẽ trong các ngôn ngữ statically typed như Go bởi vì chúng cho phép bạn tạo ra các function có thể được sử dụng với nhiều type khác nhau, và tạo ra các đoạn code có tính decoupled cao trong khi vẫn duy trì type-safety.
 
-Let's introduce this by refactoring our tests.
+Chúng ta hãy xem nó bằng các refactor test.
 
 ```go
 func TestArea(t *testing.T) {
@@ -354,9 +354,9 @@ func TestArea(t *testing.T) {
 }
 ```
 
-We are creating a helper function like we have in other exercises but this time we are asking for a `Shape` to be passed in. If we try to call this with something that isn't a shape, then it will not compile.
+Chúng ta tạo ra một function helper như chúng ta có trong các bài khác, nhưng lần này chúng ta đưa vào một `Shape`. Nếu chúng ta thử gọi nó bằng một cái gì đó không phải là shape, nó sẽ không thể biên dịch.
 
-How does something become a shape? We just tell Go what a `Shape` is using an interface declaration
+Làm thế nào để một thứ gì đó trở thành một shape? Chúng ta chỉ cần cho Go biết `Shape` là gì bằng cách khai báo một interface.
 
 ```go
 type Shape interface {
@@ -364,30 +364,32 @@ type Shape interface {
 }
 ```
 
-We're creating a new `type` just like we did with `Rectangle` and `Circle` but this time it is an `interface` rather than a `struct`.
+Chúng ta tạo ra một `type` như chúng ta đã làm với `Rectangle` và `Circle`, nhưng lần này nó là một `interface` thay vì một `struct`.
 
-Once you add this to the code, the tests will pass.
+Khi bạn thêm đoạn code này, các test sẽ pass.
 
-### Wait, what?
+### Chờ chút, cái gì vậy?
 
-This is quite different to interfaces in most other programming languages. Normally you have to write code to say `My type Foo implements interface Bar`.
+Chỗ này khá khác biệt với interface ở hầu hết các ngôn ngữ khác. Thông thường bạn sẽ phải viết code như là `My type Foo implements interface Bar`.
+
+Nhưng trong trường hợp của chúng ta&#x20;
 
 But in our case
 
-* `Rectangle` has a method called `Area` that returns a `float64` so it satisfies the `Shape` interface
-* `Circle` has a method called `Area` that returns a `float64` so it satisfies the `Shape` interface
-* `string` does not have such a method, so it doesn't satisfy the interface
-* etc.
+* `Rectangle` có một method có tên `Area` trả về một giá trị `float64` do đó nó thỏa điều kiện của interface `Shape`.
+* `Circle` có một method có tên `Area` trả về một giá trị `float64` do đó nó thỏa điều kiện của interface `Shape`.
+* `string` không có method đó, do đó nó không thỏa điều kiện của interface.
+* vân vân.
 
-In Go **interface resolution is implicit**. If the type you pass in matches what the interface is asking for, it will compile.
+Trong Go, **xử lý interface là ngầm định**. Nếu type của bạn đưa vào khớp những gì interface yêu cầu, nó sẽ được biên dịch.
 
 ### Decoupling
 
-Notice how our helper does not need to concern itself with whether the shape is a `Rectangle` or a `Circle` or a `Triangle`. By declaring an interface, the helper is _decoupled_ from the concrete types and only has the method it needs to do its job.
+Chú ý rằng cách mà helper của chúng ta không cần quan tâm chính nó là shape kiểu `Rectangle` hay `Circle` hay `Triangle`. Bằng cách định nghĩa một interface, helper được decouple từ các type cụ thể và chỉ có method cần thiết để thực hiện công việc của nó.
 
-This kind of approach of using interfaces to declare **only what you need** is very important in software design and will be covered in more detail in later sections.
+Cách tiếp cận bằng cách sử dụng các interface này để khai báo **chỉ những gì bạn cần** rất là quan trọng trong thiết kế phần mềm và sẽ được đề cập chi tiết hơn trong các phần sau.
 
-## Further refactoring
+## Refactor thêm nữa
 
 Now that you have some understanding of structs we can introduce "table driven tests".
 
