@@ -186,7 +186,7 @@ Như bạn thấy, chữ `f` được thay bằng `g`, với lý do của nó. S
 
 ## Viết code tối thiểu để cho test chạy và kiểm tra kết quả fail
 
-We need to define our `Circle` type.
+Chúng cần định nghĩa type `Circle`.
 
 ```go
 type Circle struct {
@@ -194,27 +194,29 @@ type Circle struct {
 }
 ```
 
-Now try to run the tests again
+Bây giờ thử chạy test một lần nữa
 
 `./shapes_test.go:29:14: cannot use circle (type Circle) as type Rectangle in argument to Area`
 
-Some programming languages allow you to do something like this:
+Một số ngôn ngữ lập trình cho phép bạn có thể làm như sau:
 
 ```go
 func Area(circle Circle) float64       {}
 func Area(rectangle Rectangle) float64 {}
 ```
 
-But you cannot in Go
+Nhưng bạn không thể làm với Go
 
 `./shapes.go:20:32: Area redeclared in this block`
 
-We have two choices:
+Chúng ta có hai lựa chọn:
 
-* You can have functions with the same name declared in different _packages_. So we could create our `Area(Circle)` in a new package, but that feels overkill here.
-* We can define [_methods_](https://golang.org/ref/spec#Method\_declarations) on our newly defined types instead.
+* Bạn có thể có các function có chung tên được định nghĩa ở các _package_ khác nhau. Do đó chúng ta có thể tạo `Area(Circle)` trong một package mới, nhưng làm vậy ở đây thì hơi quá.
+* Chúng ta có thể định nghĩa các [method](https://go.dev/ref/spec#Method\_declarations) trong type mới này.
 
-### What are methods?
+### Các method là gì?
+
+Hiện tại chúng ta chỉ biết viết các _function_
 
 So far we have only been writing _functions_ but we have been using some methods. When we call `t.Errorf` we are calling the method `Errorf` on the instance of our `t` (`testing.T`).
 
