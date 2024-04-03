@@ -1,5 +1,6 @@
-# Mục lục
+# Table of contents
 
+* [README](README.md)
 * [Học Go bằng cách viết test](gb-readme.md)
 
 ## Cơ bản về Go
