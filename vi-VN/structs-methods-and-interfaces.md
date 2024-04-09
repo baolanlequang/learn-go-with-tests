@@ -426,9 +426,9 @@ Table driven tests có thể là một công cụ tuyệt vời trong bộ công
 
 Chúng ta thử nghiệm điều này bằng cách thêm một hình khác và test nó, đó là hình tam giác.
 
-## Write the test first
+## Viết test trước
 
-Adding a new test for our new shape is very easy. Just add `{Triangle{12, 6}, 36.0},` to our list.
+Thêm một test mới cho hình mới rất dễ dàng. Chỉ cần thêm `{Triangle{12, 6}, 36.0}` vào list của chúng ta.
 
 ```go
 func TestArea(t *testing.T) {
@@ -452,15 +452,15 @@ func TestArea(t *testing.T) {
 }
 ```
 
-## Try to run the test
+## Chạy thử test
 
-Remember, keep trying to run the test and let the compiler guide you toward a solution.
+Hãy nhớ rằng hãy chạy test trước và để trình biên dịch hướng dẫn chúng ta đến cách sửa.
 
-## Write the minimal amount of code for the test to run and check the failing test output
+## Viết code tối thiểu để cho test chạy và kiểm tra kết quả fail
 
 `./shapes_test.go:25:4: undefined: Triangle`
 
-We have not defined `Triangle` yet
+Chúng ta chưa định nghĩa `Triangle`
 
 ```go
 type Triangle struct {
@@ -469,14 +469,14 @@ type Triangle struct {
 }
 ```
 
-Try again
+Thử lại lần nữa
 
 ```
 ./shapes_test.go:25:8: cannot use Triangle literal (type Triangle) as type Shape in field value:
     Triangle does not implement Shape (missing Area method)
 ```
 
-It's telling us we cannot use a `Triangle` as a shape because it does not have an `Area()` method, so add an empty implementation to get the test working
+Nó cho chúng ta biết rằng chúng ta không thể sử dụng `Triangle` như là một hình bởi vì nó không có method `Area()`, do đó chúng ta thêm một khai triển trống để cho test hoạt động
 
 ```go
 func (t Triangle) Area() float64 {
@@ -484,11 +484,11 @@ func (t Triangle) Area() float64 {
 }
 ```
 
-Finally the code compiles and we get our error
+Cuối cùng code sẽ được biên dịch và chúng ta có được lỗi sau
 
 `shapes_test.go:31: got 0.00 want 36.00`
 
-## Write enough code to make it pass
+## Viết code vừa đủ để làm cho nó pass
 
 ```go
 func (t Triangle) Area() float64 {
@@ -496,13 +496,13 @@ func (t Triangle) Area() float64 {
 }
 ```
 
-And our tests pass!
+Và bây giờ các test của chúng ta đã pass!
 
 ## Refactor
 
-Again, the implementation is fine but our tests could do with some improvement.
+Khai triển của chúng ta là ổn nhưng chúng ta có thể cải thiện test của chúng ta một chút.
 
-When you scan this
+Khi bạn lướt qua những dòng này
 
 ```
 {Rectangle{12, 6}, 72.0},
@@ -510,11 +510,11 @@ When you scan this
 {Triangle{12, 6}, 36.0},
 ```
 
-It's not immediately clear what all the numbers represent and you should be aiming for your tests to be easily understood.
+thì không phải ngay tức thì có thể nhận ra được những con số này đại diện cho điều gì, và bạn nên làm cho test của bạn trở nên dễ hiểu hơn.
 
-So far you've only been shown syntax for creating instances of structs `MyStruct{val1, val2}` but you can optionally name the fields.
+Hiện tại bạn chỉ biết cú pháp để tạo ra các instance của các struct là `MyStruct{val1, val2}`, nhưng bạn có thể thêm tên của các field vào.
 
-Let's see what it looks like
+Chúng sẽ trông như thế này
 
 ```
         {shape: Rectangle{Width: 12, Height: 6}, want: 72.0},
@@ -522,27 +522,33 @@ Let's see what it looks like
         {shape: Triangle{Base: 12, Height: 6}, want: 36.0},
 ```
 
-In [Test-Driven Development by Example](https://g.co/kgs/yCzDLF) Kent Beck refactors some tests to a point and asserts:
+Trong [Test-Driven Development by Example](https://g.co/kgs/yCzDLF), Kent Beck refactor một vài test đến một điểm để kiểm tra:
+
+Nguyên văn
 
 > The test speaks to us more clearly, as if it were an assertion of truth, **not a sequence of operations**
 
-(emphasis in the quote is mine)
+(phần nhấn mạnh tô đậm là của tôi)
 
-Now our tests - rather, the list of test cases - make assertions of truth about shapes and their areas.
+Tạm dịch tiếng Việt bởi người dịch
 
-## Make sure your test output is helpful
+> Test cho chúng ta sự rõ ràng hơn về việc chúng ta đang kiểm tra tính đúng đắn, chứ không phải là một chuỗi các lệnh.
 
-Remember earlier when we were implementing `Triangle` and we had the failing test? It printed `shapes_test.go:31: got 0.00 want 36.00`.
+Bây giờ test của chúng ta, thay vì là một danh sách các test case, thực sự là đang kiểm tra các hình và diện tích của chúng.
 
-We knew this was in relation to `Triangle` because we were just working with it. But what if a bug slipped in to the system in one of 20 cases in the table? How would a developer know which case failed? This is not a great experience for the developer, they will have to manually look through the cases to find out which case actually failed.
+## Làm cho giá trị xuất ra của test của bạn trở nên hữu dụng
 
-We can change our error message into `%#v got %g want %g`. The `%#v` format string will print out our struct with the values in its field, so the developer can see at a glance the properties that are being tested.
+Ở  phần trên khi chúng ta đang khai triển `Triangle` và chúng ta có test fail. Nó đã in ra `shapes_test.go:31: got 0.00 want 36.00`.
 
-To increase the readability of our test cases further, we can rename the `want` field into something more descriptive like `hasArea`.
+Chúng ta đã biết rằng nó liên quan đến `Triangle` bởi vì chúng ta đang làm việc với nó. Nhưng nếu một bug xảy ra trong hệ thống với một trong 20 test case thì sao? Làm cách nào một lập trình viên biết test case nào fail? Đây không phải là một trải nghiệm hay cho lập trình viên, họ sẽ phải tự tìm xem test case nào đã fail một cách thủ công.
 
-One final tip with table driven tests is to use `t.Run` and to name the test cases.
+Chúng ta c1 thể thay đổi thông báo lỗi thành `%#v got %g want %g`. Giá trị `%#v` định dạng chuỗi sẽ in ra struct của chúng ta cùng với giá trị trong các field của nó, nhờ vậy lập trình viên có thể thấy các thuộc tính đang được test.
 
-By wrapping each case in a `t.Run` you will have clearer test output on failures as it will print the name of the case
+Để tăng tính dễ đọc hơn cho các test case, chúng ta có thể thay đổi `want` thành một cái gì đó dễ hiểu hơn như `hasArea`.
+
+Một cách nữa với  table driven test đó là sử dụng `t.Run` và đặt tên cho các test case.
+
+Bằng cách gói từng test case vào `t.Run`, bạn có thể có giá trị xuất ra của test rõ ràng hơn về lý do fail vì nó sẽ in ra tên của test case.
 
 ```
 --- FAIL: TestArea (0.00s)
@@ -550,9 +556,9 @@ By wrapping each case in a `t.Run` you will have clearer test output on failures
         shapes_test.go:33: main.Rectangle{Width:12, Height:6} got 72.00 want 72.10
 ```
 
-And you can run specific tests within your table with `go test -run TestArea/Rectangle`.
+Và bạn có thể chạy các test cụ thể bằng `go test -run TestArea/Rectangle`.
 
-Here is our final test code which captures this
+Đây là đoạn code cho test của chúng ta
 
 ```go
 func TestArea(t *testing.T) {
@@ -581,17 +587,17 @@ func TestArea(t *testing.T) {
 }
 ```
 
-## Wrapping up
+## Tóm tắt
 
-This was more TDD practice, iterating over our solutions to basic mathematic problems and learning new language features motivated by our tests.
+Bằng cách thực hành nhiều TDD hơn, chúng ta đã đi qua các giải pháp cho các bài toán toán học cơ bản và tìm hiểu thêm về các tính năng mới của ngôn ngữ bằng cách sử dụng test.&#x20;
 
-* Declaring structs to create your own data types which lets you bundle related data together and make the intent of your code clearer
-* Declaring interfaces so you can define functions that can be used by different types ([parametric polymorphism](https://en.wikipedia.org/wiki/Parametric\_polymorphism))
-* Adding methods so you can add functionality to your data types and so you can implement interfaces
-* Table driven tests to make your assertions clearer and your test suites easier to extend & maintain
+* Khai báo các struct để tạo ra các data type cho phép bạn gom các data liên quan nhau vào một nơi và tạo nên code rõ ràng hơn.
+* Khai báo các interface để bạn có thể định nghĩa các funtion có thể sử dụng bởi các kiểu khác nhau ([parametric polymorphism](https://en.wikipedia.org/wiki/Parametric\_polymorphism))
+* Thêm các method để bạn có thể thêm các chức năng cho kiểu dữ liệu của bạn và bạn có thể khai triển với interface.
+* Table driven tests để bạn kiểm tra dễ hơn và bộ test của bạn dễ dàng hơn để mở rộng và bảo trì
 
-This was an important chapter because we are now starting to define our own types. In statically typed languages like Go, being able to design your own types is essential for building software that is easy to understand, to piece together and to test.
+Đây là một chương quan trọng bởi vì từ đây chúng ta sẽ bắt đầu định nghĩa các kiểu dữ liệu của chúng ta. Trong các ngôn ngữ statically typed như Go, khả năng tự thiết kế kiểu dữ liệu là quan trọng để xây dựng phần mềm giúp nó sẽ hiểu, dễ ghép lại với nhau và dễ test.
 
-Interfaces are a great tool for hiding complexity away from other parts of the system. In our case our test helper _code_ did not need to know the exact shape it was asserting on, only how to "ask" for its area.
+Interface là một công cụ tuyệt vời để ẩn đi sự phức tạp khỏi các phần khác của hệ thống. Trong trường hợp của chúng ta, phần _code_ của test helper không cần phải biết chính xác hình nào đang được kiểm tra, nó chỉ "hỏi" về diện tích của hình đó.
 
-As you become more familiar with Go you will start to see the real strength of interfaces and the standard library. You'll learn about interfaces defined in the standard library that are used _everywhere_ and by implementing them against your own types, you can very quickly re-use a lot of great functionality.
+Khi bạn quen thuộc với Go hơn, bạn sẽ bắt đầu nhận ra sức mạnh của các interface và các thư viện chuẩn. Bạn sẽ tìm hiểu về các interface được định nghĩa trong các thư viện chuẩn mà được sử dụng _khắp nơi_, và bằng cách khai triển nó trong kiểu dữ liệu của bạn, bạn có thể nhanh chống có được các tính năng tuyệt vời.
