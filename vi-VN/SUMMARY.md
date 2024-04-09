@@ -11,7 +11,7 @@
 * [Vòng lặp](iteration.md)
 * [Array và slice](arrays-and-slices.md)
 * [Struct, method & interface](structs-methods-and-interfaces.md)
-* [Pointer & error](go-fundamentals/pointers-and-errors.md)
+* [Pointer & error](pointers-and-errors.md)
 * [Map](maps.md)
 * [Dependency Injection](dependency-injection.md)
 * [Mocking](mocking.md)
